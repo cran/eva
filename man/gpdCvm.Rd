@@ -19,11 +19,9 @@ gpdCvm(data, bootstrap = FALSE, B = NULL, allowParallel = FALSE,
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Estimated value of theta for the initial data.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Estimated value of theta for the initial data.}
 }
 \description{
 Cramer-von Mises goodness-of-fit test for the Generalized Pareto (GPD) distribution.

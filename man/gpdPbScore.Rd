@@ -19,11 +19,9 @@ gpdPbScore(data, B, information = c("expected", "observed"),
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Estimated value of theta for the initial data.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Estimated value of theta for the initial data.}
 }
 \description{
 Parametric bootstrap score test procedure to assess goodness-of-fit to the Generalized Pareto distribution.

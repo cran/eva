@@ -14,14 +14,11 @@ gpdImAsym(data, B, theta = NULL)
 \item{theta}{Estimate for theta in the vector form (scale, shape). If NULL, uses the MLE.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Value of theta used in the test.
-
-effective_bootnum Effective number of bootstrap replicates used for the covariance estimate. If a
-replicate fails to converge, it will not be used in the estimation.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Value of theta used in the test.}
+\item{effective_bootnum}{Effective number of bootstrap replicates used for the covariance estimate. If a
+replicate fails to converge, it will not be used in the estimation.}
 }
 \description{
 Runs the IM Test using bootstrap estimated covariance matrix. Asymptotically (in sample size) follows the F(3, B-3)

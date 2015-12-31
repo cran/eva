@@ -19,16 +19,13 @@ gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{opt}{Optimization method to maximize the profile likelihood if that is selected. Argument passed to optim. The default method is Nelder-Mead.}
 }
 \value{
-Estimate Estimated m-period return level.
-
-CI Confidence interval for the m-period return level.
-
-Period The period length used.
-
-ConfLevel The confidence level used.
+\item{Estimate}{Estimated m-period return level.}
+\item{CI}{Confidence interval for the m-period return level.}
+\item{Period}{The period length used.}
+\item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes m-period return level estimates for the generalized pareto distribution, using either the delta method or profile likelihood.
+Computes m-period return level estimate and interval for the generalized pareto distribution, using either the delta method or profile likelihood.
 }
 \details{
 Caution: The profile likelihood optimization may be slow for large datasets.

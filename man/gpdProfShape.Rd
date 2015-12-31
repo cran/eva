@@ -15,11 +15,9 @@ gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead", "SANN", "BFGS", "CG",
 \item{opt}{Optimization method to maximize the profile likelihood, passed to optim. The default method is Nelder-Mead.}
 }
 \value{
-Estimate Estimated shape parameter.
-
-CI Profile likelihood based confidence interval for the shape parameter.
-
-ConfLevel The confidence level used.
+\item{Estimate}{Estimated shape parameter.}
+\item{CI}{Profile likelihood based confidence interval for the shape parameter.}
+\item{ConfLevel}{The confidence level used.}
 }
 \description{
 Computes the profile likelihood based confidence interval for the shape parameter of the generalized pareto model.

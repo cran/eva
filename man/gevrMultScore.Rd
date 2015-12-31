@@ -17,11 +17,9 @@ gevrMultScore(data, B, theta = NULL, information = c("expected",
 \item{information}{To use expected (default) or observed information in the test.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Value of theta used in the test.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Value of theta used in the test.}
 }
 \description{
 Fast weighted bootstrap alternative to the parametric bootstrap procedure for the GEVr score test.
@@ -34,6 +32,6 @@ x <- rgevr(500, 5, loc = 0.5, scale = 1, shape = 0.3)
 result <- gevrMultScore(x, 1000)
 }
 \references{
-Bader B., Jun Y., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
+Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 

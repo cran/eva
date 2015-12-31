@@ -19,11 +19,9 @@ gevrPbScore(data, B, information = c("expected", "observed"),
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Initial value of theta used in the test.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Initial value of theta used in the test.}
 }
 \description{
 Parametric bootstrap score test procedure to assess goodness-of-fit to the GEVr distribution.
@@ -38,6 +36,6 @@ GEVr data (in matrix x) should be of the form \eqn{x[i,1] > x[i, 2] > \cdots > x
 # gevrPbScore(x, B = 99)
 }
 \references{
-Bader B., Jun Y., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
+Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 

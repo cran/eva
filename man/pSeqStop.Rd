@@ -10,11 +10,9 @@ pSeqStop(p)
 \item{p}{Vector of ordered p-values.}
 }
 \value{
-StrongStop Vector of ordered p-values adjusted for the familywise error rate.
-
-ForwardStop Vector of ordered p-values adjusted for the false discovery rate.
-
-UnAdjusted Vector of non-transformed p-values.
+\item{StrongStop}{Vector of ordered p-values adjusted for the familywise error rate.}
+\item{ForwardStop}{Vector of ordered p-values adjusted for the false discovery rate.}
+\item{UnAdjusted}{Vector of non-transformed p-values.}
 }
 \description{
 Given a set of (ordered) p-values, returns p-values adjusted according to the ForwardStop and StrongStop stopping rules.
@@ -33,6 +31,6 @@ G'Sell, M. G., Wager, S., Chouldechova, A., & Tibshirani, R. (2013). Sequential 
 
 Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society. Series B (Methodological), 289-300.
 
-Bader B., Jun Y., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
+Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 

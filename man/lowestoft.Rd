@@ -28,7 +28,7 @@ gevrSeqTests(lowestoft, method = "ed")
 # gevrRl(z2, 50, method = "profile")
 }
 \references{
-Bader B., Jun Y., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
+Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 \keyword{datasets}
 

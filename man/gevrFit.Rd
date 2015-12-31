@@ -10,7 +10,7 @@ gevrFit(data, method = c("mle", "mps", "pwm"), information = c("expected",
 \arguments{
 \item{data}{Data should be a matrix from the GEVr distribution.}
 
-\item{method}{Method of estimation - maximum likelihood (mle), probability weighted moments (pwm), and maximum product spacings (mps). Uses mle by default. For \deqn{r > 1}, only mle can be used.}
+\item{method}{Method of estimation - maximum likelihood (mle), probability weighted moments (pwm), and maximum product spacings (mps). Uses mle by default. For \eqn{r > 1}, only mle can be used.}
 
 \item{information}{Whether standard errors should be calculated via observed or expected (default) information. For probability weighted moments, only expected information will be used if possible.}
 
@@ -18,7 +18,6 @@ gevrFit(data, method = c("mle", "mps", "pwm"), information = c("expected",
 }
 \value{
 A list describing the fit, including parameter estimates and standard errors for the mle and mps methods. Returns as a class object 'gevrFit' to be used with diagnostic plots.
-#' ## Put these imports here once so it is generated in the NAMESPACE by roxygen ##
 }
 \description{
 This function provides maximum likelihood estimation for the GEVr model, with the option of probability weighted moment and maximum product

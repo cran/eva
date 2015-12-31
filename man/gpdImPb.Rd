@@ -18,13 +18,10 @@ gpdImPb(data, inner, outer, allowParallel = FALSE, numCores = 1)
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Estimate of theta for the initial dataset.
-
-effective_bootnum Effective number of outer bootstrap replicates used (only those that converged are used).
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Estimate of theta for the initial dataset.}
+\item{effective_bootnum}{Effective number of outer bootstrap replicates used (only those that converged are used).}
 }
 \description{
 Runs the IM Test using a two-step iterative procedure, to boostrap the covariance estimate and critical values. See reference for details.

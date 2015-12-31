@@ -19,19 +19,16 @@ gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{opt}{Optimization method to maximize the profile likelihood if that is selected. The default method is Nelder-Mead.}
 }
 \value{
-Estimate Estimated m-period return level.
-
-CI Confidence interval for the m-period return level.
-
-Period The period length used.
-
-ConfLevel The confidence level used.
+\item{Estimate}{Estimated m-period return level.}
+\item{CI}{Confidence interval for the m-period return level.}
+\item{Period}{The period length used.}
+\item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes m-period return level estimates, using either the delta method or profile likelihood. Can be for block maxima (GEV1) or GEVr.
+Computes m-period return level estimate and interval, using either the delta method or profile likelihood.
 }
 \details{
-It is generally accepted that profile likelihood confidence intervals provide better greater accuracy than the delta
+It is generally accepted that profile likelihood confidence intervals provide greater accuracy than the delta
 method, in particular for large return level periods. Also, by their nature, delta method confidence intervals must be symmetric
 which may be undesirable for return level estimation.
 }

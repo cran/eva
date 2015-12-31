@@ -12,11 +12,9 @@ gevrEd(data, theta = NULL)
 \item{theta}{Estimate for theta in the vector form (loc, scale, shape). If NULL, uses the MLE from the largest order statistic (block maxima).}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Estimate of theta using the top r order statistics.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Estimate of theta using the top r order statistics.}
 }
 \description{
 Goodness-of-fit test for GEVr using the difference in likelihood between GEVr and GEV(r-1).
@@ -35,6 +33,6 @@ x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = 0.5)
 result <- gevrEd(x)
 }
 \references{
-Bader B., Jun Y., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
+Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 

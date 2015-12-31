@@ -21,5 +21,7 @@ visual diagnostic tool to choose a threshold for exceedances.
 }
 \examples{
 ## Not run
+## x <- rgpd(500, loc = 0, scale = 1, shape = 0.1)
+## mrlPlot(x, thresholds = c(2))
 }
 

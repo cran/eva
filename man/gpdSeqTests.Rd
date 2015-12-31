@@ -31,21 +31,14 @@ gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("cvm", "ad",
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-threshold The threshold used for the test.
-
-num.above The number of observations above the given threshold.
-
-p.values Raw p-values for the thresholds tested.
-
-ForwardStop Transformed p-values according to the ForwardStop stopping rule.
-
-StrongStop Transformed p-values according to the StrongStop stopping rule.
-
-statistic Returned test statistics of each individual test.
-
-est.scale Estimated scale parameter for the given threshold.
-
-est.shape Estimated shape parameter for the given threshold.
+\item{threshold}{The threshold used for the test.}
+\item{num.above}{The number of observations above the given threshold.}
+\item{p.values}{Raw p-values for the thresholds tested.}
+\item{ForwardStop}{Transformed p-values according to the ForwardStop stopping rule.}
+\item{StrongStop}{Transformed p-values according to the StrongStop stopping rule.}
+\item{statistic}{Returned test statistics of each individual test.}
+\item{est.scale}{Estimated scale parameter for the given threshold.}
+\item{est.shape}{Estimated shape parameter for the given threshold.}
 }
 \description{
 Wrapper function to test multiple thresholds for goodness-of-fit to the generalized pareto model. Can choose which test to

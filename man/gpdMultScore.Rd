@@ -16,11 +16,9 @@ gpdMultScore(data, B, theta = NULL, information = c("expected", "observed"))
 \item{information}{To use expected (default) or observed information in the test.}
 }
 \value{
-statistic Test statistic.
-
-p.value P-value for the test.
-
-theta Value of theta used in the test.
+\item{statistic}{Test statistic.}
+\item{p.value}{P-value for the test.}
+\item{theta}{Value of theta used in the test.}
 }
 \description{
 Fast weighted bootstrap alternative to the parametric bootstrap procedure for the Generalized Pareto score test.

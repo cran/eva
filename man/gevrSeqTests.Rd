@@ -22,23 +22,16 @@ gevrSeqTests(data, nsim = NULL, method = c("ed", "pbscore", "multscore"),
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }
 \value{
-Function returns a matrix containing the test statistics, estimates, and p-value results of the sequential tests.
+Function returns a dataframe containing the test statistics, estimates, and p-value results of the sequential tests.
 
-r Value of r to be tested.
-
-p.values Raw p-values from the individual tests at each value of r.
-
-ForwardStop Transformed p-values according to the ForwardStop stopping rule.
-
-StrongStop Transformed p-values according to the StrongStop stopping rule.
-
-statistic Returned test statistics of each individual test.
-
-est.loc Estimated location parameter for the given r.
-
-est.scale Estimated scale parameter for the given r.
-
-est.shape Estimated shape parameter for the given r.
+\item{r}{Value of r to be tested.}
+\item{p.values}{Raw p-values from the individual tests at each value of r.}
+\item{ForwardStop}{Transformed p-values according to the ForwardStop stopping rule.}
+\item{StrongStop}{Transformed p-values according to the StrongStop stopping rule.}
+\item{statistic}{Returned test statistics of each individual test.}
+\item{est.loc}{Estimated location parameter for the given r.}
+\item{est.scale}{Estimated scale parameter for the given r.}
+\item{est.shape}{Estimated shape parameter for the given r.}
 }
 \description{
 Sequentially performs the entropy difference (ED) test or the multiplier or parametric bootstrap score tests for the GEVr model.
