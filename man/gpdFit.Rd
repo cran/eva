@@ -6,32 +6,67 @@
 \usage{
 gpdFit(data, threshold = NA, nextremes = NA, npp = 365,
   method = c("mle", "mps", "pwm"), information = c("expected", "observed"),
-  start = NULL)
+  scalevars = NULL, shapevars = NULL, scaleform = ~1, shapeform = ~1,
+  scalelink = identity, shapelink = identity, start = NULL,
+  opt = "Nelder-Mead", maxit = 10000, ...)
 }
 \arguments{
 \item{data}{Data should be a numeric vector from the GPD.}
 
-\item{threshold}{A threshold value (either this or the number of extremes must be given, but not both).}
+\item{threshold}{A threshold value or vector of the same length as the data.}
 
-\item{nextremes}{Number of upper extremes to be used.}
+\item{nextremes}{Number of upper extremes to be used (either this or the threshold must be given, but not both).}
 
 \item{npp}{Length of each period (typically year). Is used in return level estimation. Defaults to 365.}
 
-\item{method}{Method of estimation - maximum likelihood (mle), probability weighted moments (pwm), and maximum product spacing (mps). Uses mle by default.}
+\item{method}{Method of estimation - maximum likelihood (mle), maximum product spacing (mps), and
+probability weighted moments (pwm). Uses mle by default. For pwm, only the stationary model can be fit.}
 
-\item{information}{Whether standard errors should be calculated via observed or expected information. For probability weighted moments, only expected information will be used if possible.}
+\item{information}{Whether standard errors should be calculated via observed or expected (default) information. For probability
+weighted moments, only expected information will be used if possible. For non-stationary models, only observed
+information is used.}
 
-\item{start}{Option to provide a set of starting parameters to optim; a vector of scale and shape. Otherwise, the routine attempts to find good starting parameters.}
+\item{scalevars, shapevars}{A dataframe of covariates to use for modeling of the each parameter. Parameter
+intercepts are automatically handled by the function. Defaults to NULL for the stationary model.}
+
+\item{scaleform, shapeform}{An object of class `formula' (or one that can be coerced into that class), specifying the model
+of each parameter. By default, assumes stationary (intercept only) model. See details.}
+
+\item{scalelink, shapelink}{A link function specifying the relationship between the covariates and each parameter. Defaults to
+the identity function. For the stationary model, only the identity link should be used.}
+
+\item{start}{Option to provide a set of starting parameters to optim; a vector of scale and shape, in that order. Otherwise,
+the routine attempts to find good starting parameters. See details.}
+
+\item{opt}{Optimization method to use with optim.}
+
+\item{maxit}{Number of iterations to use in optimization, passed to optim. Defaults to 10,000.}
+
+\item{...}{Additional arguments to pass to optim.}
 }
 \value{
 A class object 'gpdFit' describing the fit, including parameter estimates and standard errors.
 }
 \description{
 Fits exceedances above a chosen threshold to the Generalized Pareto model. Various estimation procedures can be used,
-including maximum likelihood, probability weighted moments, and maximum product spacing.
+including maximum likelihood, probability weighted moments, and maximum product spacing. It also allows
+generalized linear modeling of the parameters.
 }
 \details{
-The base code for this function is taken from the R package evir. See citation.
+The base code for finding probability weighted moments is taken from the R package evir. See citation.
+In the stationary case (no covariates), starting parameters for mle and mps estimation are the probability weighted moment estimates.
+In the case where covariates are used, the starting intercept parameters are the probability weighted moment estimates from the
+stationary case and the parameters based on covariates are initially set to zero. For non-stationary parameters, the
+first reported estimate refers to the intercept term. Covariates are centered and scaled automatically to speed up optimization,
+and then transformed back to original scale. \cr
+Formulas for generalized linear modeling of the parameters should be given in the form `~ var1 + var2 + \eqn{\cdots}'. Essentially,
+specification here is the same as would be if using function `lm' for only the right hand side of the equation. Interactions,
+polynomials, etc. can be handled as in the `formula' class. \cr
+Intercept terms are automatically handled by the function. By default, the link functions are the identity function and
+the covariate dependent scale parameter estimates are forced to be positive. For some link function \eqn{f(\cdot)} and for
+example, scale parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\mu_1 x_1 + \mu_2 x_2 + \cdots + \mu_k x_k)}. \cr
+Maximum likelihood estimation and maximum product spacing estimation can be used in all cases. Probability weighted moments
+can only be used for stationary models.
 }
 \examples{
 ## Fit data using the three different estimation procedures
@@ -49,6 +84,23 @@ mps_fit$par.ests
 mle_fit$par.ses
 pwm_fit$par.ses
 mps_fit$par.ses
+
+## A linear trend in the scale parameter
+set.seed(7)
+n <- 300
+x2 <- rep(0, n)
+for(i in 1:n) {
+  x2[i] <- rgpd(1, loc = 0, scale = 1 + i / 200, shape = 0)
+}
+
+covs <- as.data.frame(seq(1, n, 1))
+names(covs) <- c("Trend1")
+
+result1 <- gpdFit(x2, threshold = 0, scalevars = covs, scaleform = ~ Trend1)
+
+## Show summary of estimates
+result1
+
 }
 \references{
 Pfaff, Bernhard, Alexander McNeil, and A. Stephenson. "evir: Extreme Values in R." R package version (2012): 1-7.

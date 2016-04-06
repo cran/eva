@@ -9,7 +9,7 @@ pgev_naive <- function(q, loc = 0, scale = 1, shape = 1) {
 
 
 curve(pgev_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
-curve(eva:::pgev(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
+curve(pgev(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
 
 # Similarly for the GPD cdf
 pgpd_naive <- function(q, loc = 0, scale = 1, shape = 1) {
@@ -17,7 +17,7 @@ pgpd_naive <- function(q, loc = 0, scale = 1, shape = 1) {
 }
 
 curve(pgpd_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
-curve(eva:::pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025)
+curve(pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025)
 
 
 
@@ -25,7 +25,7 @@ curve(eva:::pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025)
 data(lowestoft)
 gevrSeqTests(lowestoft, method = "ed")
 
-## ----returnlevel, fig.height = 6, fig.width = 7--------------------------
+## ----returnlevel, fig.height = 12, fig.width = 8-------------------------
 
 # Make 250 year return level plot using gevr for r = 1 to 10 with the LoweStoft data
 
@@ -49,16 +49,86 @@ result <- cbind.data.frame(result, c(rep("Delta", 10), rep("Profile", 10)))
 colnames(result) <- c("r", "Est", "Lower", "Upper", "Method")
 result <- as.data.frame(result)
 
-library(ggplot2)
+prof <- subset(result, Method == "Profile")
+del <- subset(result, Method == "Delta")
 
-ggplot(result, aes(x = r, y = Est,)) +
-  geom_ribbon(data = result ,aes(ymin = Lower, ymax = Upper), alpha = 0.3) + 
-  facet_grid(Method ~ .) + 
-  geom_line() +
-  geom_point(size = 3) +
-  scale_x_continuous(breaks = seq(0, 10, by=1)) + 
-  xlab("r") +
-  ylab("250 Year Return Level") +
-  theme(text = element_text(size=15))
+par(mfrow = c(2, 1))
+
+plot(prof$r, prof$Est, main = "Profile Likelihood", 
+     xlab = "r", ylab = "250 Year Return Level",
+     xlim = c(1, 10), ylim = c(4, 7))
+polygon(c(rev(prof$r), prof$r), c(rev(prof$Lower), prof$Upper), col = 'grey80', border = NA)
+points(prof$r, prof$Est, pch = 19, col = 'black')
+lines(prof$r, prof$Est, lty = 'solid', col = 'black')
+lines(prof$r, prof$Lower, lty = 'dashed', col = 'red')
+lines(prof$r, prof$Upper, lty = 'dashed', col = 'red')
+
+
+plot(del$r, del$Est, main = "Delta Method", 
+     xlab = "r", ylab = "250 Year Return Level",
+     xlim = c(1, 10), ylim = c(4, 7))
+polygon(c(rev(del$r), del$r), c(rev(del$Lower), del$Upper), col = 'grey80', border = NA)
+points(del$r, del$Est, pch = 19, col = 'black')
+lines(del$r, del$Est, lty = 'solid', col = 'black')
+lines(del$r, del$Lower, lty = 'dashed', col = 'red')
+lines(del$r, del$Upper, lty = 'dashed', col = 'red')
+
+par(mfrow = c(1, 1))
+
+
+## ----nonstatfit1---------------------------------------------------------
+
+set.seed(7)
+n <- 100
+r <- 10
+x <- matrix(0, ncol = r, nrow = n)
+for(i in 1:n) {
+  x[i, ] <- rgevr(1, r, loc = 100 + i / 50,  scale = 1 + i / 100, shape = 0)
+}
+
+## Plot the largest order statistic
+plot(x[, 1])
+
+## Creating covariates (linear trend first)
+covs <- as.data.frame(seq(1, n, 1))
+names(covs) <- c("Trend1")
+## Create some unrelated covariates
+covs$Trend2 <- rnorm(n)
+covs$Trend3 <- 30 * runif(n)
+
+## Use full data
+fit_full <- gevrFit(data = x, method = "mle", locvars = covs, locform = ~ Trend1 + Trend2*Trend3,
+scalevars = covs, scaleform = ~ Trend1)
+
+## Only use r = 1
+fit_top_only <- gevrFit(data = x[, 1], method = "mle", locvars = covs, locform = ~ Trend1 + Trend2*Trend3,
+scalevars = covs, scaleform = ~ Trend1)
+
+
+## ----nonstatfit2---------------------------------------------------------
+
+## Show summary of estimates
+fit_full
+fit_top_only
+
+
+## ----nonstatfit3---------------------------------------------------------
+
+## Compare AIC of three models
+fit_reduced1 <- gevrFit(data = x, method = "mle", locvars = covs, locform = ~ Trend1,
+scalevars = covs, scaleform = ~ Trend1)
+
+fit_reduced2 <- gevrFit(data = x, method = "mle", locvars = covs, locform = ~ Trend1,
+scalevars = covs, scaleform = ~ Trend1, gumbel = TRUE)
+
+AIC(fit_full)
+AIC(fit_reduced1)
+AIC(fit_reduced2)
+
+LRT <- as.numeric(2 * (logLik(fit_reduced1) - logLik(fit_reduced2)))
+
+pval <- pchisq(LRT, df = 1, ncp = 0, lower.tail = FALSE, log.p = FALSE)
+
+pval
 
 

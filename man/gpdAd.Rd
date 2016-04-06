@@ -4,7 +4,7 @@
 \alias{gpdAd}
 \title{Generalized Pareto Distribution Anderson-Darling Test}
 \usage{
-gpdAd(data, bootstrap = FALSE, B = NULL, allowParallel = FALSE,
+gpdAd(data, bootstrap = FALSE, bootnum = NULL, allowParallel = FALSE,
   numCores = 1)
 }
 \arguments{
@@ -12,7 +12,7 @@ gpdAd(data, bootstrap = FALSE, B = NULL, allowParallel = FALSE,
 
 \item{bootstrap}{Should bootstrap be used to obtain p-values for the test? By default, a table of critical values is used via interpolation. See details.}
 
-\item{B}{Number of replicates if bootstrap is used.}
+\item{bootnum}{Number of replicates if bootstrap is used.}
 
 \item{allowParallel}{Should the bootstrap procedure be run in parallel or not. Defaults to false.}
 
@@ -22,6 +22,8 @@ gpdAd(data, bootstrap = FALSE, B = NULL, allowParallel = FALSE,
 \item{statistic}{Test statistic.}
 \item{p.value}{P-value for the test.}
 \item{theta}{Estimated value of theta for the initial data.}
+\item{effective_bootnum}{Effective number of bootstrap replicates if bootstrap
+based p-value is used (only those that converged are used).}
 }
 \description{
 Anderson-Darling goodness-of-fit test for the Generalized Pareto (GPD) distribution.

@@ -4,13 +4,13 @@
 \alias{gpdPbScore}
 \title{GPD Parametric Bootstrap Score Test}
 \usage{
-gpdPbScore(data, B, information = c("expected", "observed"),
+gpdPbScore(data, bootnum, information = c("expected", "observed"),
   allowParallel = FALSE, numCores = 1)
 }
 \arguments{
 \item{data}{Data should be in vector form.}
 
-\item{B}{Number of bootstrap replicates.}
+\item{bootnum}{Number of bootstrap replicates.}
 
 \item{information}{To use expected (default) or observed information in the test.}
 
@@ -22,6 +22,7 @@ gpdPbScore(data, B, information = c("expected", "observed"),
 \item{statistic}{Test statistic.}
 \item{p.value}{P-value for the test.}
 \item{theta}{Estimated value of theta for the initial data.}
+\item{effective_bootnum}{Effective number of bootstrap replicates (only those that converged are used).}
 }
 \description{
 Parametric bootstrap score test procedure to assess goodness-of-fit to the Generalized Pareto distribution.
@@ -29,6 +30,6 @@ Parametric bootstrap score test procedure to assess goodness-of-fit to the Gener
 \examples{
 ## Generate some data from GPD
 x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
-gpdPbScore(x, 100)
+gpdPbScore(x, bootnum = 100)
 }
 

@@ -15,8 +15,10 @@ gevrDiag(z, conf = 0.95, method = c("delta", "profile"))
 likelihood. Choosing profile likelihood may be quite slow.}
 }
 \value{
-Provides return level plot and density, probability, and quantile plots for each marginal order statistic.
-The overlaid density is the 'true' marginal density for the estimated parameters.
+For stationary models, provides return level plot and density, probability,
+and quantile plots for each marginal order statistic. The overlaid density is the 'true' marginal
+density for the estimated parameters. For nonstationary models, provides residual probability and quantile plots. In addition,
+nonstationary models provide plots of the residuals vs. the parameter covariates.
 }
 \description{
 Diagnostic plots for a fit to the GEVr distribution.
@@ -28,7 +30,7 @@ In certain cases the quantile plot may fail, because it requires solving a root 
 ## Not run
 # x <- rgevr(500, 2, loc = 0.5, scale = 1, shape = 0.1)
 # z <- gevrFit(x)
-# gevrDiag(z)
+# plot(z)
 }
 \references{
 Tawn, J. A. (1988). An extreme-value theory model for dependent observations. Journal of Hydrology, 101(1), 227-250.

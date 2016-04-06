@@ -4,7 +4,7 @@
 \alias{gpdSeqTests}
 \title{GPD Multiple Threshold Goodness-of-Fit Testing}
 \usage{
-gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("cvm", "ad",
+gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("ad", "cvm",
   "pbscore", "multscore", "imasym", "impb"), nsim = NULL, inner = NULL,
   outer = NULL, information = c("expected", "observed"),
   allowParallel = FALSE, numCores = 1)
@@ -16,9 +16,9 @@ gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("cvm", "ad",
 
 \item{nextremes}{A set of the number of upper extremes to be used, provided as a vector.}
 
-\item{method}{Which test to run to sequentially test the thresholds. Must be one of 'cvm', 'ad', pbscore', 'multscore', 'imasym', or 'impb'.}
+\item{method}{Which test to run to sequentially test the thresholds. Must be one of 'ad', 'cvm', 'pbscore', 'multscore', 'imasym', or 'impb'.}
 
-\item{nsim}{Number of boostrap replicates for the 'cvm', 'ad', 'pbscore', 'multscore', and 'imasym' tests.}
+\item{nsim}{Number of boostrap replicates for the 'ad', 'cvm', 'pbscore', 'multscore', and 'imasym' tests.}
 
 \item{inner}{Number of inner boostrap replicates if 'impb' test is chosen.}
 

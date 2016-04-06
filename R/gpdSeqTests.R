@@ -5,8 +5,8 @@
 #' @param data Original, full dataset in vector form.
 #' @param thresholds A set of threshold values (either this or a set of the number of extremes must be given, but not both). Must be provided as a vector.
 #' @param nextremes A set of the number of upper extremes to be used, provided as a vector.
-#' @param method Which test to run to sequentially test the thresholds. Must be one of 'cvm', 'ad', pbscore', 'multscore', 'imasym', or 'impb'.
-#' @param nsim Number of boostrap replicates for the 'cvm', 'ad', 'pbscore', 'multscore', and 'imasym' tests.
+#' @param method Which test to run to sequentially test the thresholds. Must be one of 'ad', 'cvm', 'pbscore', 'multscore', 'imasym', or 'impb'.
+#' @param nsim Number of boostrap replicates for the 'ad', 'cvm', 'pbscore', 'multscore', and 'imasym' tests.
 #' @param inner Number of inner boostrap replicates if 'impb' test is chosen.
 #' @param outer Number of outer boostrap replicates if 'impb' test is chosen.
 #' @param information To use observed or expected (default) information for the 'pbscore' and 'multscore' tests.
@@ -32,7 +32,7 @@
 #' \item{est.shape}{Estimated shape parameter for the given threshold.}
 #' @export
 
-gpdSeqTests <- function(data, thresholds = NA, nextremes = NA, method = c("cvm", "ad", "pbscore", "multscore", "imasym", "impb"),
+gpdSeqTests <- function(data, thresholds = NA, nextremes = NA, method = c("ad", "cvm", "pbscore", "multscore", "imasym", "impb"),
                         nsim = NULL, inner = NULL, outer = NULL, information = c("expected", "observed"),
                         allowParallel = FALSE, numCores = 1) {
   if(is.na(nextremes) && is.na(thresholds))
@@ -53,13 +53,13 @@ gpdSeqTests <- function(data, thresholds = NA, nextremes = NA, method = c("cvm",
     result[i, 1] <- i
     if(method == "cvm") {
       if(!is.null(nsim))
-        fit <- gpdCvm(x, bootstrap = TRUE, B = nsim, allowParallel = allowParallel, numCores = numCores)
+        fit <- gpdCvm(x, bootstrap = TRUE, bootnum = nsim, allowParallel = allowParallel, numCores = numCores)
       else
         fit <- gpdCvm(x, allowParallel = allowParallel, numCores = numCores)
     }
     if(method == "ad") {
       if(!is.null(nsim))
-        fit <- gpdAd(x, bootstrap = TRUE, B = nsim, allowParallel = allowParallel, numCores = numCores)
+        fit <- gpdAd(x, bootstrap = TRUE, bootnum = nsim, allowParallel = allowParallel, numCores = numCores)
       else
         fit <- gpdAd(x, allowParallel = allowParallel, numCores = numCores)
     }

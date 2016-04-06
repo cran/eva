@@ -21,11 +21,8 @@ pgpd(q, loc = 0, scale = 1, shape = 0, lower.tail = TRUE,
 \arguments{
 \item{x}{Vector of observations.}
 
-\item{loc}{Location parameter.}
-
-\item{scale}{Scale parameter.}
-
-\item{shape}{Shape parameter.}
+\item{loc, scale, shape}{Location, scale, and shape parameters. Can be vectors, but
+the lengths must be appropriate.}
 
 \item{log.d}{Logical; if TRUE, the log density is returned.}
 
@@ -50,13 +47,27 @@ on \eqn{\{y : y > 0, (1 + \xi (y - \mu) / \sigma) > 0 \}}, with location \eqn{\m
 scale \eqn{\sigma > 0}, and shape parameter \eqn{\xi}.
 }
 \examples{
-dgpd(2:4, 1, 0.5, 0.8)
-pgpd(2:4, 1, 0.5, 0.8)
-qgpd(seq(0.9, 0.6, -0.1), 2, 0.5, 0.8)
-rgpd(6, 1, 0.5, 0.8)
+dgpd(2:4, 1, 0.5, 0.01)
+dgpd(2, -2:1, 0.5, 0.01)
+pgpd(2:4, 1, 0.5, 0.01)
+qgpd(seq(0.9, 0.6, -0.1), 2, 0.5, 0.01)
+rgpd(6, 1, 0.5, 0.01)
+
+## Generate sample with linear trend in location parameter
+rgpd(6, 1:6, 0.5, 0.01)
+
+## Generate sample with linear trend in location and scale parameter
+rgpd(6, 1:6, seq(0.5, 3, 0.5), 0.01)
+
 p <- (1:9)/10
 pgpd(qgpd(p, 1, 2, 0.8), 1, 2, 0.8)
 ## [1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9
+
+## Incorrect syntax (parameter vectors are of different lengths other than 1)
+# rgpd(1, 1:8, 1:5, 0)
+
+## Also incorrect syntax
+# rgpd(10, 1:8, 1, 0.01)
 
 }
 \references{

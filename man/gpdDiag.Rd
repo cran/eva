@@ -11,10 +11,14 @@ gpdDiag(z, conf = 0.95, method = c("delta", "profile"))
 
 \item{conf}{Confidence level used in the return level plot.}
 
-\item{method}{The method to compute the return level confidence interval - either delta method (default) or profile likelihood. Choosing profile likelihood may be quite slow.}
+\item{method}{The method to compute the return level confidence interval - either delta method (default) or
+profile likelihood. Choosing profile likelihood may be quite slow.}
 }
 \value{
-Provides return level, density, probability, and quantile plots for the GPD exceedances. The overlaid density is the 'true' density for the estimated parameters.
+For stationary models, provides return level, density, probability, and quantile plots for the GPD exceedances. The
+overlaid density is the 'true' density for the estimated parameters. For nonstationary models, provides
+residual probability and quantile plots. In addition, nonstationary models provide plots of the residuals vs.
+the parameter covariates.
 }
 \description{
 Diagnostic plots for a fit to the Generalized Pareto distribution
@@ -26,7 +30,7 @@ See the reference for details on how return levels are calculated.
 ## Not run
 # x <- rgpd(10000, loc = 0.5, scale = 1, shape = 0.1)
 # z <- gpdFit(x, nextremes = 500)
-# gpdDiag(z)
+# plot(z)
 }
 \references{
 Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.

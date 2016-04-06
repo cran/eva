@@ -2,13 +2,13 @@
 % Please edit documentation in R/gevrRl.R
 \name{gevrRl}
 \alias{gevrRl}
-\title{GEVr Return Level Estimate and Confidence Interval}
+\title{GEVr Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
 gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
-  opt = c("Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B", "Brent"))
+  opt = c("Nelder-Mead"))
 }
 \arguments{
-\item{z}{A class object returned from gevrFit.}
+\item{z}{A class object returned from gevrFit. Must be a stationary fit.}
 
 \item{period}{The number of periods to use for the return level.}
 
@@ -25,12 +25,13 @@ gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes m-period return level estimate and interval, using either the delta method or profile likelihood.
+Computes stationary m-period return level estimate and interval, using either the delta method or profile likelihood.
 }
 \details{
 It is generally accepted that profile likelihood confidence intervals provide greater accuracy than the delta
 method, in particular for large return level periods. Also, by their nature, delta method confidence intervals must be symmetric
-which may be undesirable for return level estimation.
+which may be undesirable for return level estimation. If the original fit was Gumbel, then return levels will be for the Gumbel
+distribution.
 
 Caution: The profile likelihood optimization may be slow (on the order of minutes).
 }

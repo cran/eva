@@ -4,14 +4,14 @@
 \alias{gevrSeqTests}
 \title{Sequential Tests for the GEVr Model}
 \usage{
-gevrSeqTests(data, nsim = NULL, method = c("ed", "pbscore", "multscore"),
+gevrSeqTests(data, bootnum = NULL, method = c("ed", "pbscore", "multscore"),
   information = c("expected", "observed"), allowParallel = FALSE,
   numCores = 1)
 }
 \arguments{
 \item{data}{Data should be contain n rows, each a GEVr observation.}
 
-\item{nsim}{If method equals 'pbscore' or 'multscore', the number of bootstrap simulations to use.}
+\item{bootnum}{If method equals 'pbscore' or 'multscore', the number of bootstrap simulations to use.}
 
 \item{method}{Which test to run: ED test (ed), multiplier (multscore) or parametric bootstrap (pbscore) score test.}
 

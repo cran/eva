@@ -4,13 +4,13 @@
 \alias{gevrPbScore}
 \title{GEVr Parametric Bootstrap Score Test}
 \usage{
-gevrPbScore(data, B, information = c("expected", "observed"),
+gevrPbScore(data, bootnum, information = c("expected", "observed"),
   allowParallel = FALSE, numCores = 1)
 }
 \arguments{
 \item{data}{Data should be contain n rows, each a GEVr observation.}
 
-\item{B}{Number of bootstrap replicates.}
+\item{bootnum}{Number of bootstrap replicates.}
 
 \item{information}{To use expected (default) or observed information in the test.}
 
@@ -22,6 +22,7 @@ gevrPbScore(data, B, information = c("expected", "observed"),
 \item{statistic}{Test statistic.}
 \item{p.value}{P-value for the test.}
 \item{theta}{Initial value of theta used in the test.}
+\item{effective_bootnum}{Effective number of bootstrap replicates (only those that converged are used).}
 }
 \description{
 Parametric bootstrap score test procedure to assess goodness-of-fit to the GEVr distribution.
@@ -33,7 +34,7 @@ GEVr data (in matrix x) should be of the form \eqn{x[i,1] > x[i, 2] > \cdots > x
 ## Not run
 ## Generate some data from GEVr
 # x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
-# gevrPbScore(x, B = 99)
+# gevrPbScore(x, bootnum = 99)
 }
 \references{
 Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.

@@ -2,10 +2,10 @@
 % Please edit documentation in R/gpdRl.R
 \name{gpdRl}
 \alias{gpdRl}
-\title{GPD Return Level Estimate and Confidence Interval}
+\title{GPD Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
 gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
-  opt = c("Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B", "Brent"))
+  opt = c("Nelder-Mead"))
 }
 \arguments{
 \item{z}{An object of class gpdFit.}
@@ -16,7 +16,8 @@ gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
 
 \item{method}{The method to compute the confidence interval - either delta method (default) or profile likelihood.}
 
-\item{opt}{Optimization method to maximize the profile likelihood if that is selected. Argument passed to optim. The default method is Nelder-Mead.}
+\item{opt}{Optimization method to maximize the profile likelihood if that is selected. Argument passed to optim. The
+default method is Nelder-Mead.}
 }
 \value{
 \item{Estimate}{Estimated m-period return level.}
@@ -25,7 +26,8 @@ gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes m-period return level estimate and interval for the Generalized Pareto distribution, using either the delta method or profile likelihood.
+Computes stationary m-period return level estimate and interval for the Generalized Pareto distribution,
+using either the delta method or profile likelihood.
 }
 \details{
 Caution: The profile likelihood optimization may be slow for large datasets.

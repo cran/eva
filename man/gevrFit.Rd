@@ -5,26 +5,85 @@
 \title{Parameter estimation for the GEVr distribution model}
 \usage{
 gevrFit(data, method = c("mle", "mps", "pwm"), information = c("expected",
-  "observed"), start = NULL)
+  "observed"), locvars = NULL, scalevars = NULL, shapevars = NULL,
+  locform = ~1, scaleform = ~1, shapeform = ~1, loclink = identity,
+  scalelink = identity, shapelink = identity, gumbel = FALSE,
+  start = NULL, opt = "Nelder-Mead", maxit = 10000, ...)
 }
 \arguments{
 \item{data}{Data should be a matrix from the GEVr distribution.}
 
-\item{method}{Method of estimation - maximum likelihood (mle), probability weighted moments (pwm), and maximum product spacings (mps). Uses mle by default. For \eqn{r > 1}, only mle can be used.}
+\item{method}{Method of estimation - maximum likelihood (mle), maximum product spacings (mps), and probability weighted moments (pwm). Uses mle by default.
+For \eqn{r > 1}, only mle can be used.}
 
-\item{information}{Whether standard errors should be calculated via observed or expected (default) information. For probability weighted moments, only expected information will be used if possible.}
+\item{information}{Whether standard errors should be calculated via observed or expected (default) information. For probability weighted moments,
+only expected information will be used if possible. In the case with covariates, only observed information is available.}
 
-\item{start}{Option to provide a set of starting parameters to optim; a vector of location, scale, and shape, in that order. Otherwise, the routine attempts to find good starting parameters.}
+\item{locvars, scalevars, shapevars}{A dataframe of covariates to use for modeling of the each parameter. Parameter
+intercepts are automatically handled by the function. Defaults to NULL for the stationary model.}
+
+\item{locform, scaleform, shapeform}{An object of class `formula' (or one that can be coerced into that class), specifying the model
+of each parameter. By default, assumes stationary (intercept only) model. See details.}
+
+\item{loclink, scalelink, shapelink}{A link function specifying the relationship between the covariates and each parameter. Defaults to the identity function. For
+the stationary model, only the identity link should be used.}
+
+\item{gumbel}{Whether to fit the Gumbel (type I) extreme value distribution, i.e., shape parameter equals zero. Defaults to FALSE.}
+
+\item{start}{Option to provide a set of starting parameters to optim; a vector of location, scale, and shape, in that order. Otherwise, the routine attempts
+to find good starting parameters. See details.}
+
+\item{opt}{Optimization method to use with optim.}
+
+\item{maxit}{Number of iterations to use in optimization, passed to optim. Defaults to 10,000.}
+
+\item{...}{Additional arguments to pass to optim.}
 }
 \value{
-A list describing the fit, including parameter estimates and standard errors for the mle and mps methods. Returns as a class object 'gevrFit' to be used with diagnostic plots.
+A list describing the fit, including parameter estimates and standard errors for the mle and mps methods. Returns as a class
+object 'gevrFit' to be used with diagnostic plots.
 }
 \description{
 This function provides maximum likelihood estimation for the GEVr model, with the option of probability weighted moment and maximum product
-spacing estimation for block maxima (GEV1) data.
+spacing estimation for block maxima (GEV1) data. It also allows generalized linear modeling of the parameters.
+}
+\details{
+In the stationary case (no covariates), starting parameters for mle and mps estimation are the probability weighted moment estimates.
+In the case where covariates are used, the starting intercept parameters are the probability weighted moment estimates from the stationary case
+and the parameters based on covariates are initially set to zero. For non-stationary parameters, the first reported estimate refers to the
+intercept term. Covariates are centered and scaled automatically to speed up optimization, and then transformed back to original scale. \cr
+Formulas for generalized linear modeling of the parameters should be given in the form `~ var1 + var2 + \eqn{\cdots}'. Essentially, specification
+here is the same as would be if using function `lm' for only the right hand side of the equation. Interactions, polynomials, etc. can be
+handled as in the `formula' class. \cr
+Intercept terms are automatically handled by the function. By default, the link functions are the identity function and the covariate dependent
+scale parameter estimates are forced to be positive. For some link function \eqn{f(\cdot)} and for example, scale
+parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\mu_1 x_1 + \mu_2 x_2 + \cdots + \mu_k x_k)}. \cr
+Maximum likelihood estimation can be used in all cases. Probability weighted moment estimation can only be used if \eqn{r = 1} and data is
+assumed to be stationary. Maximum product spacings estimation can be used in the non-stationary case, but only if \eqn{r = 1}.
 }
 \examples{
-x <- rgevr(500, 1, loc = 0.5, scale = 1, shape = 0.3)
-result <- gevrFit(x, method = "mps")
+set.seed(7)
+x1 <- rgevr(500, 1, loc = 0.5, scale = 1, shape = 0.3)
+result1 <- gevrFit(x1, method = "mps")
+
+## A linear trend in the location and scale parameter
+n <- 100
+r <- 10
+x2 <- matrix(0, ncol = r, nrow = n)
+for(i in 1:n) {
+  x2[i, ] <- rgevr(1, r, loc = 100 + i / 50,  scale = 1 + i / 300, shape = 0)
+}
+
+covs <- as.data.frame(seq(1, n, 1))
+names(covs) <- c("Trend1")
+## Create some unrelated covariates
+covs$Trend2 <- rnorm(n)
+covs$Trend3 <- 30 * runif(n)
+result2 <- gevrFit(data = x2, method = "mle", locvars = covs, locform = ~ Trend1 + Trend2*Trend3,
+scalevars = covs, scaleform = ~ Trend1)
+
+## Show summary of estimates
+result2
+
 }
 

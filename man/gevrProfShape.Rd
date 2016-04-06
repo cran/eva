@@ -2,10 +2,9 @@
 % Please edit documentation in R/gevrProfShape.R
 \name{gevrProfShape}
 \alias{gevrProfShape}
-\title{GEVr Shape Parameter Profile Likelihood Estimation}
+\title{GEVr Shape Parameter Profile Likelihood Estimation for Stationary Models}
 \usage{
-gevrProfShape(z, conf = 0.95, opt = c("Nelder-Mead", "SANN", "BFGS", "CG",
-  "L-BFGS-B", "Brent"))
+gevrProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
 }
 \arguments{
 \item{z}{A class object returned from gevrFit.}
@@ -20,7 +19,7 @@ gevrProfShape(z, conf = 0.95, opt = c("Nelder-Mead", "SANN", "BFGS", "CG",
 \item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes the profile likelihood based confidence interval for the shape parameter of the GEVr model.
+Computes the profile likelihood based confidence interval for the shape parameter of the stationary GEVr model.
 }
 \examples{
 ## Compare the length of the shape confidence intervals using GEV1 vs. GEV10

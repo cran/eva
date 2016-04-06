@@ -4,14 +4,12 @@
 \alias{gpdMultScore}
 \title{GPD Multiplier Score Test}
 \usage{
-gpdMultScore(data, B, theta = NULL, information = c("expected", "observed"))
+gpdMultScore(data, bootnum, information = c("expected", "observed"))
 }
 \arguments{
 \item{data}{Data should be in vector form.}
 
-\item{B}{Number of bootstrap replicates.}
-
-\item{theta}{Estimate for theta in the vector form (scale, shape). If NULL, uses probability weighted moments as an initial estimate.}
+\item{bootnum}{Number of bootstrap replicates.}
 
 \item{information}{To use expected (default) or observed information in the test.}
 }
@@ -25,6 +23,6 @@ Fast weighted bootstrap alternative to the parametric bootstrap procedure for th
 }
 \examples{
 x <- rgpd(100, loc = 0, scale = 1, shape = 0.25)
-gpdMultScore(x, 1000)
+gpdMultScore(x, bootnum = 1000)
 }
 

@@ -21,11 +21,8 @@ pgev(q, loc = 0, scale = 1, shape = 0, lower.tail = TRUE,
 \arguments{
 \item{x}{Vector or matrix of observations. If x is a matrix, each row is taken to be a new observation.}
 
-\item{loc}{Location parameter.}
-
-\item{scale}{Scale parameter.}
-
-\item{shape}{Shape Parameter.}
+\item{loc, scale, shape}{Location, scale, and shape parameters. Can be vectors, but
+the lengths must be appropriate.}
 
 \item{log.d}{Logical: Whether or not to return the log density. (FALSE by default)}
 
@@ -60,9 +57,17 @@ set.seed(7)
 dat1 <- rgevr(1000, 1, loc = 0, scale = 1, shape = 0.25)
 dat2 <- rgevr(1000, 1, loc = 0, scale = 1, shape = -0.25)
 hist(dat1, col = rgb(1, 0, 0, 0.5), xlim = c(-5, 10), ylim = c(0, 0.4),
-main = "Histogram of GEVr Densities", xlab = "Value", freq = FALSE)
+     main = "Histogram of GEVr Densities", xlab = "Value", freq = FALSE)
 hist(dat2, col = rgb(0, 0,1, 0.5), add = TRUE, freq = FALSE)
 box()
+
+## Generate sample with decreasing trend in location parameter
+x <- rgevr(10, 2, loc = 10:1, scale = 1, shape = 0.1)
+dgevr(x, loc = 10:1, scale = 10:1, shape = 0.1)
+
+## Incorrect parameter specifications
+# rgevr(10, 2, loc = 5:8, scale = 1, shape = 0.1)
+# rgevr(1, 2, loc = 5:8, scale = 1:2, shape = 0.1)
 }
 \references{
 Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.

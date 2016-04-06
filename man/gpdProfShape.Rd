@@ -2,10 +2,9 @@
 % Please edit documentation in R/gpdProfShape.R
 \name{gpdProfShape}
 \alias{gpdProfShape}
-\title{GPD Shape Parameter Profile Likelihood Estimation}
+\title{GPD Shape Parameter Profile Likelihood Estimation for Stationary Models}
 \usage{
-gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead", "SANN", "BFGS", "CG",
-  "L-BFGS-B", "Brent"))
+gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
 }
 \arguments{
 \item{z}{A class object returned from gpdFit.}
@@ -20,7 +19,7 @@ gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead", "SANN", "BFGS", "CG",
 \item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes the profile likelihood based confidence interval for the shape parameter of the generalized pareto model.
+Computes the profile likelihood based confidence interval for the shape parameter of the stationary generalized pareto model.
 }
 \examples{
 x <- rgpd(500, loc = 0, scale = 1, shape = 0.25)
