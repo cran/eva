@@ -8,7 +8,7 @@ gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
   opt = c("Nelder-Mead"))
 }
 \arguments{
-\item{z}{An object of class gpdFit.}
+\item{z}{An object of class `gpdFit'.}
 
 \item{period}{The number of periods to use for the return level.}
 

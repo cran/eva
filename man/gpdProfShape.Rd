@@ -19,7 +19,7 @@ gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
 \item{ConfLevel}{The confidence level used.}
 }
 \description{
-Computes the profile likelihood based confidence interval for the shape parameter of the stationary generalized pareto model.
+Computes the profile likelihood based confidence interval for the shape parameter of the stationary Generalized Pareto model.
 }
 \examples{
 x <- rgpd(500, loc = 0, scale = 1, shape = 0.25)

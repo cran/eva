@@ -131,7 +131,7 @@ gevrResid <- function(z, locvec, scalevec, shapevec) {
 
 #' Diagnostic plots for a fit to the GEVr distribution.
 #'
-#' @param z A class object returned from 'gevrFit'.
+#' @param z A class object returned from `gevrFit'.
 #' @param conf Confidence level used in the return level plot.
 #' @param method The method to compute the return level confidence interval - either delta method (default) or profile
 #' likelihood. Choosing profile likelihood may be quite slow.
@@ -141,13 +141,13 @@ gevrResid <- function(z, locvec, scalevec, shapevec) {
 #' # z <- gevrFit(x)
 #' # plot(z)
 #' @return For stationary models, provides return level plot and density, probability,
-#' and quantile plots for each marginal order statistic. The overlaid density is the 'true' marginal
+#' and quantile plots for each marginal order statistic. The overlaid density is the `true' marginal
 #' density for the estimated parameters. For nonstationary models, provides residual probability and quantile plots. In addition,
 #' nonstationary models provide plots of the residuals vs. the parameter covariates.
 #' @details In certain cases the quantile plot may fail, because it requires solving a root equation. See the references for details.
 #' @references Tawn, J. A. (1988). An extreme-value theory model for dependent observations. Journal of Hydrology, 101(1), 227-250.
 #' @references Smith, R. L. (1986). Extreme value theory based on the r largest annual events. Journal of Hydrology, 86(1), 27-43.
-#' @import utils
+#' @importFrom utils menu
 #' @export
 gevrDiag <- function(z, conf = 0.95, method = c("delta", "profile")) {
   method <- match.arg(method)

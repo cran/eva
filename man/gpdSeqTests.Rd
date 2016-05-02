@@ -16,17 +16,17 @@ gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("ad", "cvm",
 
 \item{nextremes}{A set of the number of upper extremes to be used, provided as a vector.}
 
-\item{method}{Which test to run to sequentially test the thresholds. Must be one of 'ad', 'cvm', 'pbscore', 'multscore', 'imasym', or 'impb'.}
+\item{method}{Which test to run to sequentially test the thresholds. Must be one of `ad', `cvm', `pbscore', `multscore', `imasym', or `impb'.}
 
-\item{nsim}{Number of boostrap replicates for the 'ad', 'cvm', 'pbscore', 'multscore', and 'imasym' tests.}
+\item{nsim}{Number of boostrap replicates for the `ad', `cvm', `pbscore', `multscore', and `imasym' tests.}
 
-\item{inner}{Number of inner boostrap replicates if 'impb' test is chosen.}
+\item{inner}{Number of inner boostrap replicates if `impb' test is chosen.}
 
-\item{outer}{Number of outer boostrap replicates if 'impb' test is chosen.}
+\item{outer}{Number of outer boostrap replicates if `impb' test is chosen.}
 
-\item{information}{To use observed or expected (default) information for the 'pbscore' and 'multscore' tests.}
+\item{information}{To use observed or expected (default) information for the `pbscore' and `multscore' tests.}
 
-\item{allowParallel}{If selected, should the 'cvm', 'ad', 'pbscore', or 'impb' procedure be run in parallel or not. Defaults to false.}
+\item{allowParallel}{If selected, should the `cvm', `ad', `pbscore', or `impb' procedure be run in parallel or not. Defaults to false.}
 
 \item{numCores}{If allowParallel is true, specify the number of cores to use.}
 }

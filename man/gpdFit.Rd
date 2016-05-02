@@ -45,7 +45,7 @@ the routine attempts to find good starting parameters. See details.}
 \item{...}{Additional arguments to pass to optim.}
 }
 \value{
-A class object 'gpdFit' describing the fit, including parameter estimates and standard errors.
+A class object `gpdFit' describing the fit, including parameter estimates and standard errors.
 }
 \description{
 Fits exceedances above a chosen threshold to the Generalized Pareto model. Various estimation procedures can be used,
@@ -64,7 +64,7 @@ specification here is the same as would be if using function `lm' for only the r
 polynomials, etc. can be handled as in the `formula' class. \cr
 Intercept terms are automatically handled by the function. By default, the link functions are the identity function and
 the covariate dependent scale parameter estimates are forced to be positive. For some link function \eqn{f(\cdot)} and for
-example, scale parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\mu_1 x_1 + \mu_2 x_2 + \cdots + \mu_k x_k)}. \cr
+example, scale parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\sigma_1 x_1 + \sigma_2 x_2 + \cdots + \sigma_k x_k)}. \cr
 Maximum likelihood estimation and maximum product spacing estimation can be used in all cases. Probability weighted moments
 can only be used for stationary models.
 }
@@ -88,10 +88,7 @@ mps_fit$par.ses
 ## A linear trend in the scale parameter
 set.seed(7)
 n <- 300
-x2 <- rep(0, n)
-for(i in 1:n) {
-  x2[i] <- rgpd(1, loc = 0, scale = 1 + i / 200, shape = 0)
-}
+x2 <- rgpd(n, loc = 0, scale = 1 + 1:n / 200, shape = 0)
 
 covs <- as.data.frame(seq(1, n, 1))
 names(covs) <- c("Trend1")

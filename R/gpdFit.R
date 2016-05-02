@@ -29,7 +29,7 @@ findthresh <- function(data, ne) {
 #' @param opt Optimization method to use with optim.
 #' @param maxit Number of iterations to use in optimization, passed to optim. Defaults to 10,000.
 #' @param ... Additional arguments to pass to optim.
-#' @return A class object 'gpdFit' describing the fit, including parameter estimates and standard errors.
+#' @return A class object `gpdFit' describing the fit, including parameter estimates and standard errors.
 #' @details The base code for finding probability weighted moments is taken from the R package evir. See citation.
 #' In the stationary case (no covariates), starting parameters for mle and mps estimation are the probability weighted moment estimates.
 #' In the case where covariates are used, the starting intercept parameters are the probability weighted moment estimates from the
@@ -41,7 +41,7 @@ findthresh <- function(data, ne) {
 #' polynomials, etc. can be handled as in the `formula' class. \cr
 #' Intercept terms are automatically handled by the function. By default, the link functions are the identity function and
 #' the covariate dependent scale parameter estimates are forced to be positive. For some link function \eqn{f(\cdot)} and for
-#' example, scale parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\mu_1 x_1 + \mu_2 x_2 + \cdots + \mu_k x_k)}. \cr
+#' example, scale parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\sigma_1 x_1 + \sigma_2 x_2 + \cdots + \sigma_k x_k)}. \cr
 #' Maximum likelihood estimation and maximum product spacing estimation can be used in all cases. Probability weighted moments
 #' can only be used for stationary models.
 #' @examples
@@ -64,10 +64,7 @@ findthresh <- function(data, ne) {
 #' ## A linear trend in the scale parameter
 #' set.seed(7)
 #' n <- 300
-#' x2 <- rep(0, n)
-#' for(i in 1:n) {
-#'   x2[i] <- rgpd(1, loc = 0, scale = 1 + i / 200, shape = 0)
-#' }
+#' x2 <- rgpd(n, loc = 0, scale = 1 + 1:n / 200, shape = 0)
 #'
 #' covs <- as.data.frame(seq(1, n, 1))
 #' names(covs) <- c("Trend1")
@@ -78,6 +75,7 @@ findthresh <- function(data, ne) {
 #' result1
 #'
 #' @references Pfaff, Bernhard, Alexander McNeil, and A. Stephenson. "evir: Extreme Values in R." R package version (2012): 1-7.
+#' @importFrom Matrix rankMatrix
 #' @export
 gpdFit <- function(data, threshold = NA, nextremes = NA, npp = 365, method = c("mle", "mps", "pwm"),
                    information = c("expected", "observed"), scalevars = NULL, shapevars = NULL, scaleform = ~ 1,
@@ -122,7 +120,7 @@ gpdFit <- function(data, threshold = NA, nextremes = NA, npp = 365, method = c("
   scalevars.model <- model.matrix(scaleform, data = scalevars[exceedtrue, , drop = FALSE])
   scalenames <- colnames(scalevars.model)
   scalecheck <- adjScale(scalevars.model)
-  if(sum(scalecheck$truevars == 0) > 1)
+  if((rankMatrix(scalevars.model)[1] < ncol(scalevars.model)) | (rankMatrix(scalevars.model)[1] > nrow(scalevars.model)))
     stop("Scale design matrix is singular")
   scalevars.model <- scalecheck$mat
   scaletrans1 <- scalecheck$adjmeans
@@ -131,7 +129,7 @@ gpdFit <- function(data, threshold = NA, nextremes = NA, npp = 365, method = c("
   shapevars.model <- model.matrix(shapeform, data = shapevars[exceedtrue, , drop = FALSE])
   shapenames <- colnames(shapevars.model)
   shapecheck <- adjScale(shapevars.model)
-  if(sum(shapecheck$truevars == 0) > 1)
+  if((rankMatrix(shapevars.model)[1] < ncol(shapevars.model)) | (rankMatrix(shapevars.model)[1] > nrow(shapevars.model)))
     stop("Shape design matrix is singular")
   shapevars.model <- shapecheck$mat
   shapetrans1 <- shapecheck$adjmeans

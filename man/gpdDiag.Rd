@@ -7,7 +7,7 @@
 gpdDiag(z, conf = 0.95, method = c("delta", "profile"))
 }
 \arguments{
-\item{z}{A class object returned from 'gpdFit'.}
+\item{z}{A class object returned from `gpdFit'.}
 
 \item{conf}{Confidence level used in the return level plot.}
 
@@ -16,7 +16,7 @@ profile likelihood. Choosing profile likelihood may be quite slow.}
 }
 \value{
 For stationary models, provides return level, density, probability, and quantile plots for the GPD exceedances. The
-overlaid density is the 'true' density for the estimated parameters. For nonstationary models, provides
+overlaid density is the `true' density for the estimated parameters. For nonstationary models, provides
 residual probability and quantile plots. In addition, nonstationary models provide plots of the residuals vs.
 the parameter covariates.
 }

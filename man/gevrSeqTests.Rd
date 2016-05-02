@@ -38,7 +38,7 @@ Sequentially performs the entropy difference (ED) test or the multiplier or para
 }
 \details{
 GEVr data (in matrix x) should be of the form \eqn{x[i,1] > x[i, 2] > \cdots > x[i, r]} for each observation \eqn{i = 1, \ldots, n}.
-See function 'pSeqStop' for details on transformed p-values.
+See function `pSeqStop' for details on transformed p-values.
 }
 \examples{
 x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)

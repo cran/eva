@@ -81,10 +81,7 @@ par(mfrow = c(1, 1))
 set.seed(7)
 n <- 100
 r <- 10
-x <- matrix(0, ncol = r, nrow = n)
-for(i in 1:n) {
-  x[i, ] <- rgevr(1, r, loc = 100 + i / 50,  scale = 1 + i / 100, shape = 0)
-}
+x <- rgevr(n, r, loc = 100 + 1:n / 50,  scale = 1 + 1:n / 100, shape = 0)
 
 ## Plot the largest order statistic
 plot(x[, 1])
@@ -129,6 +126,43 @@ LRT <- as.numeric(2 * (logLik(fit_reduced1) - logLik(fit_reduced2)))
 
 pval <- pchisq(LRT, df = 1, ncp = 0, lower.tail = FALSE, log.p = FALSE)
 
-pval
+round(pval, digits = 3)
+
+
+## ----rfa_example1--------------------------------------------------------
+
+set.seed(7)
+require(mvtnorm)
+## Create correlation matrix
+x <- runif(4, 0.5, 0.9)
+S <- x %*% t(x)
+diag(S) <- rep(1, 4)
+n.obs <- 50
+## Gaussian correlated random variables
+AB <- rmvnorm(mean = rep(0, 4), sig = S, n = n.obs)
+
+
+## ----rfa_example2--------------------------------------------------------
+
+## Now U has uniform margins but is correlated
+U <- pnorm(AB)
+cor(U)
+
+
+## ----rfa_example3--------------------------------------------------------
+
+## Transform to GEV margins
+locations <- c(8, 10, 12, 9)
+out <- apply(U, 2, qgev, loc = c(1:n.obs) * 0.1, scale = 1, shape = 0.04)
+out <- out + t(matrix(rep(locations, nrow(out)), ncol = nrow(out)))
+out <- as.vector(out)
+
+## Create design matrix for the location parameters
+loc <- cbind.data.frame(c(rep("A", n.obs), rep("B", n.obs), 
+                          rep("C", n.obs), rep("D", n.obs)), 
+                        c(rep(seq(1, n.obs, 1), 4)))
+colnames(loc) <- c("Site", "Trend")
+
+gevrFit(out, locvars = loc, locform = ~ Site + Trend)
 
 

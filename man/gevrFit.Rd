@@ -28,7 +28,7 @@ of each parameter. By default, assumes stationary (intercept only) model. See de
 \item{loclink, scalelink, shapelink}{A link function specifying the relationship between the covariates and each parameter. Defaults to the identity function. For
 the stationary model, only the identity link should be used.}
 
-\item{gumbel}{Whether to fit the Gumbel (type I) extreme value distribution, i.e., shape parameter equals zero. Defaults to FALSE.}
+\item{gumbel}{Whether to fit the Gumbel (type I) extreme value distribution (i.e. shape parameter equals zero). Defaults to FALSE.}
 
 \item{start}{Option to provide a set of starting parameters to optim; a vector of location, scale, and shape, in that order. Otherwise, the routine attempts
 to find good starting parameters. See details.}
@@ -41,7 +41,7 @@ to find good starting parameters. See details.}
 }
 \value{
 A list describing the fit, including parameter estimates and standard errors for the mle and mps methods. Returns as a class
-object 'gevrFit' to be used with diagnostic plots.
+object `gevrFit' to be used with diagnostic plots.
 }
 \description{
 This function provides maximum likelihood estimation for the GEVr model, with the option of probability weighted moment and maximum product
@@ -57,7 +57,7 @@ here is the same as would be if using function `lm' for only the right hand side
 handled as in the `formula' class. \cr
 Intercept terms are automatically handled by the function. By default, the link functions are the identity function and the covariate dependent
 scale parameter estimates are forced to be positive. For some link function \eqn{f(\cdot)} and for example, scale
-parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\mu_1 x_1 + \mu_2 x_2 + \cdots + \mu_k x_k)}. \cr
+parameter \eqn{\sigma}, the link is written as \eqn{\sigma = f(\sigma_1 x_1 + \sigma_2 x_2 + \cdots + \sigma_k x_k)}. \cr
 Maximum likelihood estimation can be used in all cases. Probability weighted moment estimation can only be used if \eqn{r = 1} and data is
 assumed to be stationary. Maximum product spacings estimation can be used in the non-stationary case, but only if \eqn{r = 1}.
 }
@@ -69,10 +69,7 @@ result1 <- gevrFit(x1, method = "mps")
 ## A linear trend in the location and scale parameter
 n <- 100
 r <- 10
-x2 <- matrix(0, ncol = r, nrow = n)
-for(i in 1:n) {
-  x2[i, ] <- rgevr(1, r, loc = 100 + i / 50,  scale = 1 + i / 300, shape = 0)
-}
+x2 <- rgevr(n, r, loc = 100 + 1:n / 50,  scale = 1 + 1:n / 300, shape = 0)
 
 covs <- as.data.frame(seq(1, n, 1))
 names(covs) <- c("Trend1")
