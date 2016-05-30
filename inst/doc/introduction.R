@@ -132,37 +132,45 @@ round(pval, digits = 3)
 ## ----rfa_example1--------------------------------------------------------
 
 set.seed(7)
-require(mvtnorm)
-## Create correlation matrix
-x <- runif(4, 0.5, 0.9)
-S <- x %*% t(x)
-diag(S) <- rep(1, 4)
-n.obs <- 50
-## Gaussian correlated random variables
-AB <- rmvnorm(mean = rep(0, 4), sig = S, n = n.obs)
-
-
-## ----rfa_example2--------------------------------------------------------
-
-## Now U has uniform margins but is correlated
-U <- pnorm(AB)
+require(SpatialExtremes)
+n.site <- 4
+n.obs <- 15
+## Simulate a max-stable random field
+locations <- matrix(runif(2 * n.site, 0, 10), ncol = 2)
+colnames(locations) <- c("lon", "lat")
+## Smith model
+U <- rmaxstab(n.obs, locations, "gauss", cov11 = 16, cov12 = 0, cov22 = 16)
 cor(U)
 
 
 ## ----rfa_example3--------------------------------------------------------
 
 ## Transform to GEV margins
-locations <- c(8, 10, 12, 9)
-out <- apply(U, 2, qgev, loc = c(1:n.obs) * 0.1, scale = 1, shape = 0.04)
+locations <- runif(n.site, 8, 15)
+out <- frech2gev(U, loc = 0, scale = 1, shape = 0.2)
 out <- out + t(matrix(rep(locations, nrow(out)), ncol = nrow(out)))
 out <- as.vector(out)
 
 ## Create design matrix for the location parameters
-loc <- cbind.data.frame(c(rep("A", n.obs), rep("B", n.obs), 
-                          rep("C", n.obs), rep("D", n.obs)), 
-                        c(rep(seq(1, n.obs, 1), 4)))
-colnames(loc) <- c("Site", "Trend")
+loc <- cbind.data.frame(as.factor(sort(rep(seq(1, n.site, 1), n.obs))))
+colnames(loc) <- c("Site")
 
-gevrFit(out, locvars = loc, locform = ~ Site + Trend)
+z <- gevrFit(out, locvars = loc, locform = ~ Site)
+
+
+## ----rfa_example4--------------------------------------------------------
+
+#delta <- cbind.data.frame(z$par.ests - 1.96 * z$par.ses, z$par.ests + 1.96 * z$par.ses)
+#IN <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "in", allowParallel = TRUE, numCores = 3)
+#HT <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "ht", 
+#                grouping = loc$Site, ordering = rep(seq(1, n.obs, 1), n.site), allowParallel = TRUE, numCores = 3)
+#SC <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "sc", 
+#                grouping = loc$Site, ordering = rep(seq(1, n.obs, 1), n.site), allowParallel = TRUE, numCores = 3)
+#colnames(delta) <- c("Lower", "Upper")
+
+#delta
+#IN$CIs
+#HT$CIs
+#SC$CIs
 
 
