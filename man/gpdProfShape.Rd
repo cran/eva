@@ -4,14 +4,14 @@
 \alias{gpdProfShape}
 \title{GPD Shape Parameter Profile Likelihood Estimation for Stationary Models}
 \usage{
-gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
+gpdProfShape(z, conf = 0.95, plot = TRUE)
 }
 \arguments{
 \item{z}{A class object returned from gpdFit.}
 
 \item{conf}{Confidence level to use. Defaults to 95 percent.}
 
-\item{opt}{Optimization method to maximize the profile likelihood, passed to optim. The default method is Nelder-Mead.}
+\item{plot}{Plot the profile likelihood and estimate (vertical line)?}
 }
 \value{
 \item{Estimate}{Estimated shape parameter.}
@@ -22,7 +22,7 @@ gpdProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
 Computes the profile likelihood based confidence interval for the shape parameter of the stationary Generalized Pareto model.
 }
 \examples{
-x <- rgpd(500, loc = 0, scale = 1, shape = 0.25)
+x <- rgpd(200, loc = 0, scale = 1, shape = 0.25)
 z <- gpdFit(x, threshold = 0)
 gpdProfShape(z)
 }

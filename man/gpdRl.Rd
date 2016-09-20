@@ -4,7 +4,7 @@
 \alias{gpdRl}
 \title{GPD Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
-gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
+gpdRl(z, period, conf = 0.95, method = c("delta", "profile"), plot = TRUE,
   opt = c("Nelder-Mead"))
 }
 \arguments{
@@ -15,6 +15,8 @@ gpdRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{conf}{Confidence level. Defaults to 95 percent.}
 
 \item{method}{The method to compute the confidence interval - either delta method (default) or profile likelihood.}
+
+\item{plot}{Plot the profile likelihood and estimate (vertical line)?}
 
 \item{opt}{Optimization method to maximize the profile likelihood if that is selected. Argument passed to optim. The
 default method is Nelder-Mead.}
@@ -33,7 +35,7 @@ using either the delta method or profile likelihood.
 Caution: The profile likelihood optimization may be slow for large datasets.
 }
 \examples{
-x <- rgpd(5000, loc = 0, scale = 1, shape = 0.1)
+x <- rgpd(5000, loc = 0, scale = 1, shape = -0.1)
 ## Compute 50-period return level.
 z <- gpdFit(x, nextremes = 200)
 gpdRl(z, period = 50, method = "delta")

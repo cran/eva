@@ -5,7 +5,7 @@
 \title{GEVr Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
 gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
-  opt = c("Nelder-Mead"))
+  plot = TRUE, opt = c("Nelder-Mead"))
 }
 \arguments{
 \item{z}{A class object returned from gevrFit. Must be a stationary fit.}
@@ -15,6 +15,8 @@ gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
 \item{conf}{Confidence level. Defaults to 95 percent.}
 
 \item{method}{The method to compute the confidence interval - either delta method (default) or profile likelihood.}
+
+\item{plot}{Plot the profile likelihood and estimate (vertical line)?}
 
 \item{opt}{Optimization method to maximize the profile likelihood if that is selected. The default method is Nelder-Mead.}
 }
@@ -36,7 +38,7 @@ distribution.
 Caution: The profile likelihood optimization may be slow (on the order of minutes).
 }
 \examples{
-x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = 0.3)
+x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = -0.3)
 z <- gevrFit(x)
 ## Compute 250-period return level.
 gevrRl(z, 250, method = "delta")

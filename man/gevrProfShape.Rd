@@ -4,12 +4,14 @@
 \alias{gevrProfShape}
 \title{GEVr Shape Parameter Profile Likelihood Estimation for Stationary Models}
 \usage{
-gevrProfShape(z, conf = 0.95, opt = c("Nelder-Mead"))
+gevrProfShape(z, conf = 0.95, plot = TRUE, opt = c("Nelder-Mead"))
 }
 \arguments{
 \item{z}{A class object returned from gevrFit.}
 
 \item{conf}{Confidence level to use. Defaults to 95 percent.}
+
+\item{plot}{Plot the profile likelihood and estimate (vertical line)?}
 
 \item{opt}{Optimization method to maximize the profile likelihood, passed to optim. The default method is Nelder-Mead.}
 }
@@ -24,7 +26,7 @@ Computes the profile likelihood based confidence interval for the shape paramete
 \examples{
 ## Compare the length of the shape confidence intervals using GEV1 vs. GEV10
 set.seed(7)
-x <- rgevr(200, 10, loc = 0.5, scale = 1, shape = 0.3)
+x <- rgevr(200, 10, loc = 0.5, scale = 1, shape = -0.3)
 z1 <- gevrFit(x[, 1])
 z2 <- gevrFit(x)
 gevrProfShape(z1)

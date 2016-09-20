@@ -8,16 +8,18 @@ pgev_naive <- function(q, loc = 0, scale = 1, shape = 1) {
 }
 
 
-curve(pgev_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
-curve(pgev(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
+curve(pgev_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025, 
+      xlab = "Shape", ylab = "GEV CDF", col = "red", lty = 1, lwd = 1)
+curve(pgev(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025, col = "blue", lty = 6, lwd = 3, add = TRUE)
 
 # Similarly for the GPD cdf
 pgpd_naive <- function(q, loc = 0, scale = 1, shape = 1) {
     (1 - (1 + (shape * (q - loc))/scale)^(-1/shape))
 }
 
-curve(pgpd_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025)
-curve(pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025)
+curve(pgpd_naive(1, 0, 1, x), 1e-20, .01, log = "x", n = 1025, 
+      xlab = "Shape", ylab = "GPD CDF", col = "red", lty = 1, lwd = 1)
+curve(pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025, col = "blue", lty = 6, lwd = 3, add = TRUE)
 
 
 
@@ -36,7 +38,7 @@ period <- 250
 for(i in 1:10) {
   z <- gevrFit(as.matrix(lowestoft[, 1:i]))
   y1 <- gevrRl(z, period, conf = 0.95, method = "delta")
-  y2 <- gevrRl(z, period, conf = 0.95, method = "profile")
+  y2 <- gevrRl(z, period, conf = 0.95, method = "profile", plot = FALSE)
   result[i, 1] <- i
   result[i, 2] <- y1$Estimate
   result[i, 3:4] <- y1$CI
@@ -140,13 +142,13 @@ locations <- matrix(runif(2 * n.site, 0, 10), ncol = 2)
 colnames(locations) <- c("lon", "lat")
 ## Smith model
 U <- rmaxstab(n.obs, locations, "gauss", cov11 = 16, cov12 = 0, cov22 = 16)
-cor(U)
+cor(U, method = "spearman")
 
 
 ## ----rfa_example3--------------------------------------------------------
 
 ## Transform to GEV margins
-locations <- runif(n.site, 8, 15)
+locations <- c(8, 10, 12, 9)
 out <- frech2gev(U, loc = 0, scale = 1, shape = 0.2)
 out <- out + t(matrix(rep(locations, nrow(out)), ncol = nrow(out)))
 out <- as.vector(out)
@@ -156,21 +158,6 @@ loc <- cbind.data.frame(as.factor(sort(rep(seq(1, n.site, 1), n.obs))))
 colnames(loc) <- c("Site")
 
 z <- gevrFit(out, locvars = loc, locform = ~ Site)
-
-
-## ----rfa_example4--------------------------------------------------------
-
-#delta <- cbind.data.frame(z$par.ests - 1.96 * z$par.ses, z$par.ests + 1.96 * z$par.ses)
-#IN <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "in", allowParallel = TRUE, numCores = 3)
-#HT <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "ht", 
-#                grouping = loc$Site, ordering = rep(seq(1, n.obs, 1), n.site), allowParallel = TRUE, numCores = 3)
-#SC <- gevCIboot(z, conf = 0.95, bootnum = 1000, resampling = "sc", 
-#                grouping = loc$Site, ordering = rep(seq(1, n.obs, 1), n.site), allowParallel = TRUE, numCores = 3)
-#colnames(delta) <- c("Lower", "Upper")
-
-#delta
-#IN$CIs
-#HT$CIs
-#SC$CIs
+z
 
 
