@@ -1,4 +1,4 @@
-14c67088db5c6f12a74cdbc351210156 *DESCRIPTION
+bd820a207cde119d8883f60e8f76ec4e *DESCRIPTION
 6962c33968e58f27797c9d201641561b *NAMESPACE
 3b08d329a14c094acad19fb5f8fbf5d2 *R/eva.R
 9f4e05dddc69f532580e9732ae247de4 *R/fortmax.R
@@ -6,7 +6,7 @@
 eea02a2842321336be5a3c6b2b5f03ed *R/gevrDiag.R
 f564fb9964526cbd4b8efc5a542227be *R/gevrEd.R
 cfe47b1a21acddab1385dd7da1015d9c *R/gevrFit.R
-c9e3159d4076037ea5de0461a46ec7bb *R/gevrFunctions.R
+5be6fdbda253dafd4aa05eae0d2827ee *R/gevrFunctions.R
 cf8357c50c01b80f6a6f4ac811987c0b *R/gevrMultScore.R
 de7120970fcc4f387b03eb09cc8760ab *R/gevrPbScore.R
 bcf101f000b8fce1058bc1281dd8c553 *R/gevrProfShape.R
@@ -29,13 +29,13 @@ bbefd19b40b316e46a889940e4987fce *R/lowestoft.R
 86050b0820d8971432e86613e9042d30 *R/mrlPlot.R
 0f0cdd49ee92eb009774025a631e5600 *R/pSeqStop.R
 15395ff706126038312cc5f8148e6b6e *R/sysdata.rda
-5f6af483448eb0f18bedfb2ac072f976 *build/vignette.rds
+f2d9791653106866bbfe8bea4e23761b *build/vignette.rds
 757d7cd02269daf5b247bf4c666fec7c *data/fortmax.rda
 95f1af3a41be645ad0c3c8af56be6007 *data/lowestoft.rda
 4210a308a6c3eca61a3ba97ef2dd5015 *inst/CITATION
 0c774a6a9f9934ffeb0e23cbe91b8cce *inst/doc/introduction.R
 12ddcc1e0d2ec0cef0c38d2bb847c8ae *inst/doc/introduction.Rmd
-58344d22cc85d828009a230746870009 *inst/doc/introduction.html
+96a42f1553bb891eb66f3475d3618036 *inst/doc/introduction.html
 5b6603cc20edbe7415d862d0d37f6c96 *man/eva.Rd
 cb6258462b2684b4d8a16c474e62d42b *man/fortmax.Rd
 53b639f2bc361aa41ad2fcf076fe55a7 *man/gevr.Rd
