@@ -14,7 +14,7 @@
 #' @references Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.
 #' @examples
 #' x <- rgpd(5000, loc = 0, scale = 1, shape = -0.1)
-#' ## Compute 50-period return level.
+#' # Compute 50-period return level.
 #' z <- gpdFit(x, nextremes = 200)
 #' gpdRl(z, period = 50, method = "delta")
 #' gpdRl(z, period = 50, method = "profile")

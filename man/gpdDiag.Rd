@@ -27,12 +27,12 @@ Diagnostic plots for a fit to the Generalized Pareto distribution
 See the reference for details on how return levels are calculated.
 }
 \examples{
-## Not run
-# x <- rgpd(10000, loc = 0.5, scale = 1, shape = 0.1)
-# z <- gpdFit(x, nextremes = 500)
-# plot(z)
+\dontrun{
+x <- rgpd(10000, loc = 0.5, scale = 1, shape = 0.1)
+z <- gpdFit(x, nextremes = 500)
+plot(z)
+}
 }
 \references{
 Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.
 }
-

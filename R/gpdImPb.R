@@ -26,9 +26,10 @@ gpdImGen <- function(n, theta, inner) {
 #' @param numCores If allowParallel is true, specify the number of cores to use.
 #' @references Dhaene, G., & Hoorelbeke, D. (2004). The information matrix test with bootstrap-based covariance matrix estimation. Economics Letters, 82(3), 341-347.
 #' @examples
-#' ## Not run
-#' # x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
-#' # gpdImPb(x, inner = 20, outer = 99)
+#' \donttest{
+#' x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
+#' gpdImPb(x, inner = 20, outer = 99)
+#' }
 #' @return
 #' \item{statistic}{Test statistic.}
 #' \item{p.value}{P-value for the test.}

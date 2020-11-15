@@ -8,7 +8,7 @@
 #' @param opt Optimization method to maximize the profile likelihood, passed to optim. The default method is Nelder-Mead.
 #'
 #' @examples
-#' ## Compare the length of the shape confidence intervals using GEV1 vs. GEV10
+#' # Compare the length of the shape confidence intervals using GEV1 vs. GEV10
 #' set.seed(7)
 #' x <- rgevr(200, 10, loc = 0.5, scale = 1, shape = -0.3)
 #' z1 <- gevrFit(x[, 1])

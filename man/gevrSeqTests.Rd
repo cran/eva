@@ -4,9 +4,14 @@
 \alias{gevrSeqTests}
 \title{Sequential Tests for the GEVr Model}
 \usage{
-gevrSeqTests(data, bootnum = NULL, method = c("ed", "pbscore", "multscore"),
-  information = c("expected", "observed"), allowParallel = FALSE,
-  numCores = 1)
+gevrSeqTests(
+  data,
+  bootnum = NULL,
+  method = c("ed", "pbscore", "multscore"),
+  information = c("expected", "observed"),
+  allowParallel = FALSE,
+  numCores = 1
+)
 }
 \arguments{
 \item{data}{Data should be contain n rows, each a GEVr observation.}
@@ -44,4 +49,3 @@ See function `pSeqStop' for details on transformed p-values.
 x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
 gevrSeqTests(x, method = "ed")
 }
-

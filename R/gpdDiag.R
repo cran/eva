@@ -92,10 +92,11 @@ gpdResid <- function(z, scalevec, shapevec) {
 #' @param method The method to compute the return level confidence interval - either delta method (default) or
 #' profile likelihood. Choosing profile likelihood may be quite slow.
 #' @examples
-#' ## Not run
-#' # x <- rgpd(10000, loc = 0.5, scale = 1, shape = 0.1)
-#' # z <- gpdFit(x, nextremes = 500)
-#' # plot(z)
+#' \dontrun{
+#' x <- rgpd(10000, loc = 0.5, scale = 1, shape = 0.1)
+#' z <- gpdFit(x, nextremes = 500)
+#' plot(z)
+#' }
 #' @return For stationary models, provides return level, density, probability, and quantile plots for the GPD exceedances. The
 #' overlaid density is the `true' density for the estimated parameters. For nonstationary models, provides
 #' residual probability and quantile plots. In addition, nonstationary models provide plots of the residuals vs.
@@ -105,6 +106,9 @@ gpdResid <- function(z, scalevec, shapevec) {
 #' @importFrom utils menu
 #' @export
 gpdDiag <- function(z, conf = 0.95, method = c("delta", "profile")) {
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+  
   method <- match.arg(method)
   par(ask = TRUE, mfcol = c(2, 2))
   scalevec <- z$links[[1]](rowSums(t(z$par.ests[1:z$parnum[1]] * t(z$covars[[1]]))))

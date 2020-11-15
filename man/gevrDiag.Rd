@@ -27,14 +27,14 @@ Diagnostic plots for a fit to the GEVr distribution.
 In certain cases the quantile plot may fail, because it requires solving a root equation. See the references for details.
 }
 \examples{
-## Not run
-# x <- rgevr(500, 2, loc = 0.5, scale = 1, shape = 0.1)
-# z <- gevrFit(x)
-# plot(z)
+\dontrun{
+x <- rgevr(500, 2, loc = 0.5, scale = 1, shape = 0.1)
+z <- gevrFit(x)
+plot(z)
+}
 }
 \references{
 Tawn, J. A. (1988). An extreme-value theory model for dependent observations. Journal of Hydrology, 101(1), 227-250.
 
 Smith, R. L. (1986). Extreme value theory based on the r largest annual events. Journal of Hydrology, 86(1), 27-43.
 }
-

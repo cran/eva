@@ -3,7 +3,6 @@
 \docType{package}
 \name{eva}
 \alias{eva}
-\alias{eva-package}
 \title{eva: Extreme Value Analysis with Goodness-of-Fit Testing}
 \description{
 The focus of this package is to provide much needed automated diagnostic

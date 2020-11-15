@@ -27,11 +27,10 @@ entropy between the GEVr and GEV(r-1) likelihoods. See reference for detailed in
 used to sequentially test for the choice of r, implemented in the function `gevrSeqTests'.
 }
 \examples{
-## This will test if the GEV2 distribution fits the data.
+# This will test if the GEV2 distribution fits the data.
 x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = 0.5)
 result <- gevrEd(x)
 }
 \references{
 Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
-

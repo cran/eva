@@ -5,7 +5,7 @@
 #' @param data Data should be contain n rows, each a GEVr observation.
 #' @param theta Estimate for theta in the vector form (loc, scale, shape). If NULL, uses the MLE from the full data.
 #' @examples
-#' ## This will test if the GEV2 distribution fits the data.
+#' # This will test if the GEV2 distribution fits the data.
 #' x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = 0.5)
 #' result <- gevrEd(x)
 #' @return

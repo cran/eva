@@ -4,8 +4,13 @@
 \alias{gpdCvm}
 \title{Generalized Pareto Distribution Cramer-von Mises Test}
 \usage{
-gpdCvm(data, bootstrap = FALSE, bootnum = NULL, allowParallel = FALSE,
-  numCores = 1)
+gpdCvm(
+  data,
+  bootstrap = FALSE,
+  bootnum = NULL,
+  allowParallel = FALSE,
+  numCores = 1
+)
 }
 \arguments{
 \item{data}{Data should be in vector form, assumed to be from the GPD.}
@@ -36,11 +41,10 @@ on the critical values for the tail of the distribution (.950 to .999 upper perc
 regression provides a method to extrapolate to arbitrarily small p-values.
 }
 \examples{
-## Generate some data from GPD
+# Generate some data from GPD
 x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
 gpdCvm(x)
 }
 \references{
 Choulakian, V., & Stephens, M. A. (2001). Goodness-of-fit tests for the Generalized Pareto distribution. Technometrics, 43(4), 478-484.
 }
-

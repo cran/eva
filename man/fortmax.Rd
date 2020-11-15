@@ -4,7 +4,9 @@
 \name{fortmax}
 \alias{fortmax}
 \title{Top Ten Annual Precipitation: Fort Collins, Colorado}
-\format{A data frame with 100 observations. Each year is considered an observation, with the top ten annual precipitation events.}
+\format{
+A data frame with 100 observations. Each year is considered an observation, with the top ten annual precipitation events.
+}
 \source{
 Colorado Climate Center, Colorado State University. This is the original data source containing the daily precipitation data.
 }
@@ -25,4 +27,3 @@ gevrSeqTests(y, method = "ed")
 Katz, R. W., Parlange, M. B. and Naveau, P. (2002) Statistics of extremes in hydrology. Advances in Water Resources, 25, 1287-1304.
 }
 \keyword{datasets}
-

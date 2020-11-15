@@ -15,7 +15,7 @@
 #' @param loc,scale,shape Location, scale, and shape parameters. Can be vectors, but
 #' the lengths must be appropriate.
 #' @examples
-#' ## Plot the densities of the heavy and bounded upper tail forms of GEVr
+#' # Plot the densities of the heavy and bounded upper tail forms of GEVr
 #' set.seed(7)
 #' dat1 <- rgevr(1000, 1, loc = 0, scale = 1, shape = 0.25)
 #' dat2 <- rgevr(1000, 1, loc = 0, scale = 1, shape = -0.25)
@@ -24,13 +24,15 @@
 #' hist(dat2, col = rgb(0, 0,1, 0.5), add = TRUE, freq = FALSE)
 #' box()
 #'
-#' ## Generate sample with decreasing trend in location parameter
+#' # Generate sample with decreasing trend in location parameter
 #' x <- rgevr(10, 2, loc = 10:1, scale = 1, shape = 0.1)
 #' dgevr(x, loc = 10:1, scale = 10:1, shape = 0.1)
 #'
-#' ## Incorrect parameter specifications
-#' # rgevr(10, 2, loc = 5:8, scale = 1, shape = 0.1)
-#' # rgevr(1, 2, loc = 5:8, scale = 1:2, shape = 0.1)
+#' # Incorrect parameter specifications
+#' \dontrun{
+#' rgevr(10, 2, loc = 5:8, scale = 1, shape = 0.1)
+#' rgevr(1, 2, loc = 5:8, scale = 1:2, shape = 0.1)
+#' }
 #' @details GEVr data (in matrix x) should be of the form \eqn{x[i,1] > x[i, 2] > \cdots > x[i, r]} for each observation
 #' \eqn{i = 1, \ldots, n}. Note that currently the quantile and cdf functions are only for the GEV1 distribution. The GEVr
 #' distribution is also known as the r-largest order statistics model and is a generalization of the block maxima model (GEV1).

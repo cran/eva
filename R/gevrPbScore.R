@@ -15,10 +15,11 @@ gevrPbGen <- function(n, R, theta, information) {
 #' @param allowParallel Should the bootstrap procedure be run in parallel or not. Defaults to false.
 #' @param numCores If allowParallel is true, specify the number of cores to use.
 #' @examples
-#' ## Not run
-#' ## Generate some data from GEVr
-#' # x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
-#' # gevrPbScore(x, bootnum = 99)
+#' # Generate some data from GEVr
+#' \donttest{
+#' x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
+#' gevrPbScore(x, bootnum = 99)
+#' }
 #' @return
 #' \item{statistic}{Test statistic.}
 #' \item{p.value}{P-value for the test.}

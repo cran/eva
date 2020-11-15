@@ -95,6 +95,7 @@ result <- as.data.frame(result)
 prof <- subset(result, Method == "Profile")
 del <- subset(result, Method == "Delta")
 
+oldpar <- par(no.readonly = TRUE)
 par(mfrow = c(2, 1))
 
 plot(prof$r, prof$Est, main = "Profile Likelihood", 
@@ -116,7 +117,7 @@ lines(del$r, del$Est, lty = 'solid', col = 'black')
 lines(del$r, del$Lower, lty = 'dashed', col = 'red')
 lines(del$r, del$Upper, lty = 'dashed', col = 'red')
 
-par(mfrow = c(1, 1))
+par(oldpar)
 
 ```
 

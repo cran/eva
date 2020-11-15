@@ -31,11 +31,11 @@ Warning: This test can be very slow, since the covariance estimation is nested w
 recommended to use a small number of replicates for the covariance estimate (at most 50).
 }
 \examples{
-## Not run
-# x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
-# gpdImPb(x, inner = 20, outer = 99)
+\donttest{
+x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
+gpdImPb(x, inner = 20, outer = 99)
+}
 }
 \references{
 Dhaene, G., & Hoorelbeke, D. (2004). The information matrix test with bootstrap-based covariance matrix estimation. Economics Letters, 82(3), 341-347.
 }
-

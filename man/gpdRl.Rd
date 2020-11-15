@@ -4,8 +4,14 @@
 \alias{gpdRl}
 \title{GPD Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
-gpdRl(z, period, conf = 0.95, method = c("delta", "profile"), plot = TRUE,
-  opt = c("Nelder-Mead"))
+gpdRl(
+  z,
+  period,
+  conf = 0.95,
+  method = c("delta", "profile"),
+  plot = TRUE,
+  opt = c("Nelder-Mead")
+)
 }
 \arguments{
 \item{z}{An object of class `gpdFit'.}
@@ -36,7 +42,7 @@ Caution: The profile likelihood optimization may be slow for large datasets.
 }
 \examples{
 x <- rgpd(5000, loc = 0, scale = 1, shape = -0.1)
-## Compute 50-period return level.
+# Compute 50-period return level.
 z <- gpdFit(x, nextremes = 200)
 gpdRl(z, period = 50, method = "delta")
 gpdRl(z, period = 50, method = "profile")
@@ -44,4 +50,3 @@ gpdRl(z, period = 50, method = "profile")
 \references{
 Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.
 }
-

@@ -25,11 +25,10 @@ Runs the IM Test using bootstrap estimated covariance matrix. Asymptotically (in
 distribution (see reference for details).
 }
 \examples{
-## Generate some data from GPD
+# Generate some data from GPD
 x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
 gpdImAsym(x, bootnum = 50)
 }
 \references{
 Dhaene, G., & Hoorelbeke, D. (2004). The information matrix test with bootstrap-based covariance matrix estimation. Economics Letters, 82(3), 341-347.
 }
-

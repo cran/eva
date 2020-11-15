@@ -15,7 +15,7 @@ gpdPbGen <- function(n, theta, information) {
 #' @param allowParallel Should the bootstrap procedure be run in parallel or not. Defaults to false.
 #' @param numCores If allowParallel is true, specify the number of cores to use.
 #' @examples
-#' ## Generate some data from GPD
+#' # Generate some data from GPD
 #' x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
 #' gpdPbScore(x, bootnum = 100)
 #' @return

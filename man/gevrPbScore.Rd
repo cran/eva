@@ -4,8 +4,13 @@
 \alias{gevrPbScore}
 \title{GEVr Parametric Bootstrap Score Test}
 \usage{
-gevrPbScore(data, bootnum, information = c("expected", "observed"),
-  allowParallel = FALSE, numCores = 1)
+gevrPbScore(
+  data,
+  bootnum,
+  information = c("expected", "observed"),
+  allowParallel = FALSE,
+  numCores = 1
+)
 }
 \arguments{
 \item{data}{Data should be contain n rows, each a GEVr observation.}
@@ -31,12 +36,12 @@ Parametric bootstrap score test procedure to assess goodness-of-fit to the GEVr 
 GEVr data (in matrix x) should be of the form \eqn{x[i,1] > x[i, 2] > \cdots > x[i, r]} for each observation \eqn{i = 1, \ldots, n}.
 }
 \examples{
-## Not run
-## Generate some data from GEVr
-# x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
-# gevrPbScore(x, bootnum = 99)
+# Generate some data from GEVr
+\donttest{
+x <- rgevr(200, 5, loc = 0.5, scale = 1, shape = 0.25)
+gevrPbScore(x, bootnum = 99)
+}
 }
 \references{
 Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
-

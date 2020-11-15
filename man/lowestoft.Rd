@@ -4,7 +4,9 @@
 \name{lowestoft}
 \alias{lowestoft}
 \title{Top Ten Annual Sea Levels: Lowestoft, UK (1964 - 2014)}
-\format{A data matrix with 51 observations. Each year is considered an observation, with the top ten annual sea level events.}
+\format{
+A data matrix with 51 observations. Each year is considered an observation, with the top ten annual sea level events.
+}
 \source{
 UK Tide Gauge Network (Lowestoft Station): https://www.bodc.ac.uk/data/online_delivery/ntslf/processed/
 }
@@ -31,4 +33,3 @@ gevrSeqTests(lowestoft, method = "ed")
 Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
 \keyword{datasets}
-

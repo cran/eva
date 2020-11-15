@@ -4,10 +4,18 @@
 \alias{gpdSeqTests}
 \title{GPD Multiple Threshold Goodness-of-Fit Testing}
 \usage{
-gpdSeqTests(data, thresholds = NA, nextremes = NA, method = c("ad", "cvm",
-  "pbscore", "multscore", "imasym", "impb"), nsim = NULL, inner = NULL,
-  outer = NULL, information = c("expected", "observed"),
-  allowParallel = FALSE, numCores = 1)
+gpdSeqTests(
+  data,
+  thresholds = NULL,
+  nextremes = NULL,
+  method = c("ad", "cvm", "pbscore", "multscore", "imasym", "impb"),
+  nsim = NULL,
+  inner = NULL,
+  outer = NULL,
+  information = c("expected", "observed"),
+  allowParallel = FALSE,
+  numCores = 1
+)
 }
 \arguments{
 \item{data}{Original, full dataset in vector form.}
@@ -56,4 +64,3 @@ x <- rgpd(10000, loc = 0, scale = 5, shape = 0.2)
 threshes <- c(1.5, 2.5, 3.5, 4.5, 5.5)
 gpdSeqTests(x, thresholds = threshes, method = "ad")
 }
-

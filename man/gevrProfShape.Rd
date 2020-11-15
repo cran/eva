@@ -24,7 +24,7 @@ gevrProfShape(z, conf = 0.95, plot = TRUE, opt = c("Nelder-Mead"))
 Computes the profile likelihood based confidence interval for the shape parameter of the stationary GEVr model.
 }
 \examples{
-## Compare the length of the shape confidence intervals using GEV1 vs. GEV10
+# Compare the length of the shape confidence intervals using GEV1 vs. GEV10
 set.seed(7)
 x <- rgevr(200, 10, loc = 0.5, scale = 1, shape = -0.3)
 z1 <- gevrFit(x[, 1])
@@ -32,4 +32,3 @@ z2 <- gevrFit(x)
 gevrProfShape(z1)
 gevrProfShape(z2)
 }
-

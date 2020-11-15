@@ -26,4 +26,3 @@ x <- rgpd(200, loc = 0, scale = 1, shape = 0.25)
 z <- gpdFit(x, threshold = 0)
 gpdProfShape(z)
 }
-

@@ -31,4 +31,3 @@ result <- gevrMultScore(x, bootnum = 1000)
 \references{
 Bader B., Yan J., & Zhang X. (2015). Automated Selection of r for the r Largest Order Statistics Approach with Adjustment for Sequential Testing. Department of Statistics, University of Connecticut.
 }
-

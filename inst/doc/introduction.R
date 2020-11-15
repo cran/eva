@@ -1,4 +1,4 @@
-## ----shape---------------------------------------------------------------
+## ----shape--------------------------------------------------------------------
 # load package
 library(eva)
 
@@ -23,11 +23,11 @@ curve(pgpd(1, 0, 1, x),  1e-20, .01, log = "x", n = 1025, col = "blue", lty = 6,
 
 
 
-## ----seqtesting----------------------------------------------------------
+## ----seqtesting---------------------------------------------------------------
 data(lowestoft)
 gevrSeqTests(lowestoft, method = "ed")
 
-## ----returnlevel, fig.height = 12, fig.width = 8-------------------------
+## ----returnlevel, fig.height = 12, fig.width = 8------------------------------
 
 # Make 250 year return level plot using gevr for r = 1 to 10 with the LoweStoft data
 
@@ -54,6 +54,7 @@ result <- as.data.frame(result)
 prof <- subset(result, Method == "Profile")
 del <- subset(result, Method == "Delta")
 
+oldpar <- par(no.readonly = TRUE)
 par(mfrow = c(2, 1))
 
 plot(prof$r, prof$Est, main = "Profile Likelihood", 
@@ -75,10 +76,10 @@ lines(del$r, del$Est, lty = 'solid', col = 'black')
 lines(del$r, del$Lower, lty = 'dashed', col = 'red')
 lines(del$r, del$Upper, lty = 'dashed', col = 'red')
 
-par(mfrow = c(1, 1))
+par(oldpar)
 
 
-## ----nonstatfit1---------------------------------------------------------
+## ----nonstatfit1--------------------------------------------------------------
 
 set.seed(7)
 n <- 100
@@ -104,14 +105,14 @@ fit_top_only <- gevrFit(data = x[, 1], method = "mle", locvars = covs, locform =
 scalevars = covs, scaleform = ~ Trend1)
 
 
-## ----nonstatfit2---------------------------------------------------------
+## ----nonstatfit2--------------------------------------------------------------
 
 ## Show summary of estimates
 fit_full
 fit_top_only
 
 
-## ----nonstatfit3---------------------------------------------------------
+## ----nonstatfit3--------------------------------------------------------------
 
 ## Compare AIC of three models
 fit_reduced1 <- gevrFit(data = x, method = "mle", locvars = covs, locform = ~ Trend1,
@@ -131,7 +132,7 @@ pval <- pchisq(LRT, df = 1, ncp = 0, lower.tail = FALSE, log.p = FALSE)
 round(pval, digits = 3)
 
 
-## ----rfa_example1--------------------------------------------------------
+## ----rfa_example1-------------------------------------------------------------
 
 set.seed(7)
 require(SpatialExtremes)
@@ -145,7 +146,7 @@ U <- rmaxstab(n.obs, locations, "gauss", cov11 = 16, cov12 = 0, cov22 = 16)
 cor(U, method = "spearman")
 
 
-## ----rfa_example3--------------------------------------------------------
+## ----rfa_example3-------------------------------------------------------------
 
 ## Transform to GEV margins
 locations <- c(8, 10, 12, 9)

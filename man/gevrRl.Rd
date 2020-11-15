@@ -4,8 +4,14 @@
 \alias{gevrRl}
 \title{GEVr Return Level Estimate and Confidence Interval for Stationary Models}
 \usage{
-gevrRl(z, period, conf = 0.95, method = c("delta", "profile"),
-  plot = TRUE, opt = c("Nelder-Mead"))
+gevrRl(
+  z,
+  period,
+  conf = 0.95,
+  method = c("delta", "profile"),
+  plot = TRUE,
+  opt = c("Nelder-Mead")
+)
 }
 \arguments{
 \item{z}{A class object returned from gevrFit. Must be a stationary fit.}
@@ -40,7 +46,7 @@ Caution: The profile likelihood optimization may be slow (on the order of minute
 \examples{
 x <- rgevr(100, 2, loc = 0.5, scale = 1, shape = -0.3)
 z <- gevrFit(x)
-## Compute 250-period return level.
+# Compute 250-period return level.
 gevrRl(z, 250, method = "delta")
 }
 \references{
@@ -48,4 +54,3 @@ http://www.mas.ncl.ac.uk/~nlf8/teaching/mas8391/background/chapter2.pdf
 
 Coles, S. (2001). An introduction to statistical modeling of extreme values (Vol. 208). London: Springer.
 }
-

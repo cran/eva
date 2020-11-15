@@ -20,8 +20,8 @@ Plots the empirical mean residual life, with confidence intervals. The mean resi
 visual diagnostic tool to choose a threshold for exceedances.
 }
 \examples{
-## Not run
-## x <- rgpd(500, loc = 0, scale = 1, shape = 0.1)
-## mrlPlot(x, thresholds = c(2))
+\donttest{
+x <- rgpd(500, loc = 0, scale = 1, shape = 0.1)
+mrlPlot(x, thresholds = c(2))
 }
-
+}

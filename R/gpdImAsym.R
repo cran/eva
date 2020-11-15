@@ -7,7 +7,7 @@
 #' @param theta Estimate for theta in the vector form (scale, shape). If NULL, uses the MLE.
 #' @references Dhaene, G., & Hoorelbeke, D. (2004). The information matrix test with bootstrap-based covariance matrix estimation. Economics Letters, 82(3), 341-347.
 #' @examples
-#' ## Generate some data from GPD
+#' # Generate some data from GPD
 #' x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
 #' gpdImAsym(x, bootnum = 50)
 #' @return

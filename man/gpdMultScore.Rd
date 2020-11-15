@@ -25,4 +25,3 @@ Fast weighted bootstrap alternative to the parametric bootstrap procedure for th
 x <- rgpd(100, loc = 0, scale = 1, shape = 0.25)
 gpdMultScore(x, bootnum = 1000)
 }
-

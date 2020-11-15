@@ -20,22 +20,20 @@
 #' qgpd(seq(0.9, 0.6, -0.1), 2, 0.5, 0.01)
 #' rgpd(6, 1, 0.5, 0.01)
 #'
-#' ## Generate sample with linear trend in location parameter
+#' # Generate sample with linear trend in location parameter
 #' rgpd(6, 1:6, 0.5, 0.01)
 #'
-#' ## Generate sample with linear trend in location and scale parameter
+#' # Generate sample with linear trend in location and scale parameter
 #' rgpd(6, 1:6, seq(0.5, 3, 0.5), 0.01)
 #'
 #' p <- (1:9)/10
 #' pgpd(qgpd(p, 1, 2, 0.8), 1, 2, 0.8)
-#' ## [1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9
 #'
-#' ## Incorrect syntax (parameter vectors are of different lengths other than 1)
-#' # rgpd(1, 1:8, 1:5, 0)
-#'
-#' ## Also incorrect syntax
-#' # rgpd(10, 1:8, 1, 0.01)
-#'
+#' # Incorrect syntax (parameter vectors are of different lengths other than 1)
+#' \dontrun{
+#' rgpd(1, 1:8, 1:5, 0)
+#' rgpd(10, 1:8, 1, 0.01)
+#' }
 #' @details The Generalized Pareto distribution function is given (Pickands, 1975)
 #' by \deqn{H(y) = 1 - \Big[1 + \frac{\xi (y - \mu)}{\sigma}\Big]^{-1/\xi}} defined
 #' on \eqn{\{y : y > 0, (1 + \xi (y - \mu) / \sigma) > 0 \}}, with location \eqn{\mu},

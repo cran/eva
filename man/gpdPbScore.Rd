@@ -4,8 +4,13 @@
 \alias{gpdPbScore}
 \title{GPD Parametric Bootstrap Score Test}
 \usage{
-gpdPbScore(data, bootnum, information = c("expected", "observed"),
-  allowParallel = FALSE, numCores = 1)
+gpdPbScore(
+  data,
+  bootnum,
+  information = c("expected", "observed"),
+  allowParallel = FALSE,
+  numCores = 1
+)
 }
 \arguments{
 \item{data}{Data should be in vector form.}
@@ -28,8 +33,7 @@ gpdPbScore(data, bootnum, information = c("expected", "observed"),
 Parametric bootstrap score test procedure to assess goodness-of-fit to the Generalized Pareto distribution.
 }
 \examples{
-## Generate some data from GPD
+# Generate some data from GPD
 x <- rgpd(200, loc = 0, scale = 1, shape = 0.2)
 gpdPbScore(x, bootnum = 100)
 }
-
